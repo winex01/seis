@@ -10,12 +10,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    {{-- Styles --}}
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     {{-- Bootstrap Core CSS --}}
-    {{-- <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="{{ asset('vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
