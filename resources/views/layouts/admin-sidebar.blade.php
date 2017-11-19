@@ -18,7 +18,7 @@
                     <li>
                         <a href="{{ route('events') }}"><i class="fa fa-list-alt fa-fw"></i> Events</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

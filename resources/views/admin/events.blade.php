@@ -18,6 +18,14 @@
             </div>
             <!-- /.col-lg-12 -->
         </div>
+
+        {{-- content --}}
+        <div class="row">
+            <a href="#" class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                New Event
+            </a>
+        </div>
+        {{-- / content --}}
     </div>
     <!-- /#page-wrapper -->
 
