@@ -11,12 +11,16 @@
 |
 */
 
+// guest
 Route::get('/', function () {
     return view('welcome');
 });
 
+// auth
 Auth::routes();
 
+// home
 Route::get('/home', 'HomeController@index')->name('home');
 
+// event
 Route::resource('event', 'EventController');

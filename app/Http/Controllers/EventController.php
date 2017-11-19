@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Event;
 use Carbon\Carbon;
+use App\Event;
+use DataTables;
 
 class EventController extends Controller
 {
@@ -48,4 +49,5 @@ class EventController extends Controller
         return back();
 
     }
+
 }
