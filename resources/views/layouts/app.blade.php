@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -93,11 +93,8 @@
         </ul>
         <!-- /.navbar-top-links -->
 
-        @guest
-        @else
-            @include('layouts.admin-sidebar')
-        @endguest
-        <!-- /.navbar-static-side -->
+       @yield('sidebar')
+
     </nav>
     @yield('content')
 

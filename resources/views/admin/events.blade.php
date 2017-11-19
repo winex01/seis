@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
-
+@section('sidebar')
+    @include('layouts.admin-sidebar')
 @section('content')
  <div id="wrapper">
 
