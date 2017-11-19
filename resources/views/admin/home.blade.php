@@ -10,7 +10,10 @@
             <div class="col-lg-12">
                 <div class="page-header">
                     <ol class="breadcrumb">
-                        <li class="active">Home</li>
+                        <li class="active">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                            Home
+                        </li>
                     </ol>
                 </div>
             </div>

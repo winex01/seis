@@ -11,9 +11,13 @@
                 <div class="page-header">
                     <ol class="breadcrumb">
                         <li>
+                            <i class="fa fa-home" aria-hidden="true"></i>
                             <a href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="active">Events</li>
+                        <li class="active">
+                            <i class="fa fa-list-alt fa-fw"></i> 
+                            Events
+                        </li>
                     </ol>
                 </div>
             </div>
