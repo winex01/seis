@@ -35,11 +35,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Laracasts\\Flash\\FlashServiceProvider"
+                "Laracasts\\Flash\\FlashServiceProvider",
+                "Yajra\\DataTables\\DataTablesServiceProvider"
             ],
 
             "aliases": {
-                "Flash": "Laracasts\\Flash\\Flash"
+                "Flash": "Laracasts\\Flash\\Flash",
+                "DataTables": "Yajra\\DataTables\\Facades\\DataTables"
             },
 
             "dont-discover": [
