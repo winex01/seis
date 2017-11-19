@@ -26,8 +26,14 @@ class EventController extends Controller
         return view('admin.event');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        echo 'test';
+        $request->validate([
+            'start' => 'required',
+            'end' => 'required',
+        ]);
+
+        // echo 'wtf';
+
     }
 }

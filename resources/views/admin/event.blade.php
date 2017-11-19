@@ -24,6 +24,7 @@
         </div>
 
         @include('flash::message')
+        @include('layouts.validation-errors')
 
         {{-- content --}}
         <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
@@ -48,16 +49,16 @@
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-2">From:</label>
-                    <div class="col-sm-10">
-                      <input type="date" name="from" class="form-control">
+                    <label class="control-label col-sm-4">Date Start:</label>
+                    <div class="col-sm-6">
+                      <input type="date" name="start" class="form-control">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-sm-2">To:</label>
-                    <div class="col-sm-10">
-                      <input type="date" name="to" class="form-control">
+                    <label class="control-label col-sm-4">Date End:</label>
+                    <div class="col-sm-6">
+                      <input type="date" name="end" class="form-control">
                     </div>
                   </div>
                  
