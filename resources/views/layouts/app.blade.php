@@ -93,7 +93,10 @@
         </ul>
         <!-- /.navbar-top-links -->
 
-        @yield('sidebar')
+        @guest
+        @else
+            @include('layouts.admin-sidebar')
+        @endguest
         <!-- /.navbar-static-side -->
     </nav>
     @yield('content')
