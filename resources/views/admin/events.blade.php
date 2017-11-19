@@ -16,8 +16,7 @@
                         </li>
                         <li class="active">
                             <i class="fa fa-list-alt fa-fw"></i> 
-                            Events
-                        </li>
+                            Events</li>
                     </ol>
                 </div>
             </div>
@@ -25,15 +24,53 @@
         </div>
 
         {{-- content --}}
-        <div class="row">
-            <a href="#" class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                New Event
-            </a>
-        </div>
+        <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+            New Event
+        </a>
         {{-- / content --}}
     </div>
     <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
+
+<div class="modal fade" id="new-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">New Event</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+
+                  {{ csrf_field() }}
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Password:</label>
+                    <div class="col-sm-10"> 
+                      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                    </div>
+                  </div>
+                 
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary btn-outline">Save
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
 @endsection
