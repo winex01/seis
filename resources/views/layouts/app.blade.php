@@ -123,6 +123,6 @@
         $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
     </script>
 
-    @yield('script')
+    @stack('scripts')
 </body>
 </html>
