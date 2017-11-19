@@ -16,7 +16,7 @@
                         <a href="{{ route('home') }}"><i class="fa fa-home fa-fw"></i> Home</a>
                     </li>
                     <li>
-                        <a href="{{ route('events') }}"><i class="fa fa-list-alt fa-fw"></i> Events</a>
+                        <a href="{{ route('event.index') }}"><i class="fa fa-list-alt fa-fw"></i> Events</a>
                     </li>
                     {{-- <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>

@@ -97,6 +97,7 @@
     </nav>
     @yield('content')
 
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 
@@ -116,5 +117,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
+
+    <script>
+        $('#flash-overlay-modal').modal();
+    </script>
 </body>
 </html>

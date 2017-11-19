@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class EventsController extends Controller
+class EventController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,6 +23,11 @@ class EventsController extends Controller
      */
     public function index()
     {
-        return view('admin.events');
+        return view('admin.event');
+    }
+
+    public function store()
+    {
+        echo 'test';
     }
 }

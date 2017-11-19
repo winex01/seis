@@ -23,6 +23,8 @@
             <!-- /.col-lg-12 -->
         </div>
 
+        @include('flash::message')
+
         {{-- content --}}
         <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
             New Event
@@ -33,7 +35,6 @@
 
 </div>
 <!-- /#wrapper -->
-
 <div class="modal fade" id="new-event">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -42,21 +43,21 @@
                 <h4 class="modal-title">New Event</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" method="POST" action="{{ route('event.store') }}">
 
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="email">Email:</label>
+                    <label class="control-label col-sm-2">From:</label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="email" placeholder="Enter email">
+                      <input type="date" name="from" class="form-control">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="pwd">Password:</label>
-                    <div class="col-sm-10"> 
-                      <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+                    <label class="control-label col-sm-2">To:</label>
+                    <div class="col-sm-10">
+                      <input type="date" name="to" class="form-control">
                     </div>
                   </div>
                  
