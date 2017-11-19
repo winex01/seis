@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
+use Carbon\Carbon;
 
 class EventController extends Controller
 {
@@ -33,7 +35,17 @@ class EventController extends Controller
             'end' => 'required',
         ]);
 
-        
+        //validation success
+        $event = Event::create([
+            'start' => $request->start,
+            'end' => $request->end
+        ]);
+
+        $start = new Carbon($event->start);
+        $end   = new Carbon($event->end);
+
+        flash($start->format('F d, Y').' to '.$end->format('F d, Y').' <br/>Event is created successfully!')->success();
+        return back();
 
     }
 }
