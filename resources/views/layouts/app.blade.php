@@ -119,7 +119,9 @@
     <script src="{{ asset('dist/js/sb-admin-2.js') }}"></script>
 
     <script>
+        // laracast flash
         $('#flash-overlay-modal').modal();
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
     </script>
 </body>
 </html>

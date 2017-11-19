@@ -22,7 +22,7 @@ class EventController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         return view('admin.event');
     }
 
@@ -33,7 +33,7 @@ class EventController extends Controller
             'end' => 'required',
         ]);
 
-        // echo 'wtf';
+        
 
     }
 }
