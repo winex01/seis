@@ -44,7 +44,7 @@ class EventController extends Controller
         $start = new Carbon($event->start);
         $end   = new Carbon($event->end);
 
-        flash($start->format('F d, Y').' to '.$end->format('F d, Y').' <br/>Event is created successfully!')->success();
+        flash($start->format('F d, Y').' to '.$end->format('F d, Y').' <br/>Event created successfully!')->success();
         return back();
 
     }
