@@ -8,5 +8,10 @@ class Event extends Model
 {
     //
     protected $guarded = [];
+
+    public function games()
+    {
+    	return $this->hasMany('App\Game');
+    }
     
 }
