@@ -45,4 +45,22 @@ class EventController extends Controller
 
     }
 
+    public function all()
+    {
+        
+        $events = Event::select(['id', 'year', 'created_at']);
+        return DataTables::of($events)->addColumn('action', function ($event) {
+                return '
+                    <div align="center">
+                        <div class="btn-group"> 
+                            <a href="#" class="btn btn-xs btn-info"><i class="fa fa-search"></i> Select</a>
+                            <button class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                        </div>
+                    </div>
+                ';
+            })
+            ->make(true);
+    }
+
 }

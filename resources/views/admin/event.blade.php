@@ -29,9 +29,25 @@
         @include('layouts.validation-errors')
 
         {{-- content --}}
-        <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-            New Event
-        </a>
+        <div class="form-group">
+            <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                New Event
+            </a>
+        </div>
+
+
+        <table id="events-table" class="table table-striped">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>Year</th>
+              <th>Created</th>
+              <th><center>Action</center></th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
         {{-- / content --}}
     </div>
     <!-- /#page-wrapper -->
@@ -72,3 +88,20 @@
 </div>
 @endsection
 
+@push('scripts')
+    <script type="text/javascript">
+        $(function() {
+            $('#events-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ url('event/all') }}',
+                columns: [
+                    {data: 'id'},
+                    {data: 'year'},
+                    {data: 'created_at'},
+                    {data: 'action'},
+                ]
+            });
+        });
+    </script>
+@endpush
