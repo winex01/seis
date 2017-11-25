@@ -2,6 +2,8 @@
 
 @section('sidebar')
     @include('layouts.admin-sidebar')
+@endsection
+
 @section('content')
  <div id="wrapper">
 
@@ -49,21 +51,14 @@
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-4">Date Start:</label>
+                    <label class="control-label col-sm-4">Year:</label>
                     <div class="col-sm-6">
-                      <input type="date" name="start" class="form-control">
+                        <input type="number" name="year" min="1999" max="2099" class="form-control" />
                     </div>
                   </div>
 
-                  <div class="form-group">
-                    <label class="control-label col-sm-4">Date End:</label>
-                    <div class="col-sm-6">
-                      <input type="date" name="end" class="form-control">
-                    </div>
-                  </div>
-                 
                   <div class="form-group"> 
-                    <div class="col-sm-offset-2 col-sm-10">
+                    <div class="col-sm-offset-4 col-sm-10">
                       <button type="submit" class="btn btn-primary btn-outline">Save
                       <i class="fa fa-check" aria-hidden="true"></i>
                       </button>
@@ -76,3 +71,4 @@
     </div>
 </div>
 @endsection
+

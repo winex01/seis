@@ -32,20 +32,15 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'start' => 'required',
-            'end' => 'required',
+            'year' => 'required',
         ]);
 
         //validation success
         $event = Event::create([
-            'start' => $request->start,
-            'end' => $request->end
+            'year' => $request->year
         ]);
 
-        $start = new Carbon($event->start);
-        $end   = new Carbon($event->end);
-
-        flash($start->format('F d, Y').' to '.$end->format('F d, Y').' <br/>Event created successfully!')->success();
+        flash('Event created successfully!')->success();
         return back();
 
     }
