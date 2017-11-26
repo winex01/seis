@@ -52,13 +52,23 @@ class EventController extends Controller
         return DataTables::of($events)->addColumn('action', function ($event) {
                 return '
                     <div align="center">
-                            <a href="#" class="btn btn-xs btn-info"><i class="fa fa-list"></i> Games</a>
+                            <button class="btn btn-xs btn-info"><i class="fa fa-list"></i> Games</button>
                             <button class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
-                            <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                            <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
             })
+             ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function destroy(Event $event)
+    {
+        $deleted = $event->year;
+
+        Event::destroy($event->id);
+
+        return response()->json(['title' => $deleted]);
     }
 
 }

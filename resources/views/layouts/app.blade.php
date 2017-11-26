@@ -94,12 +94,6 @@
     {{-- custom --}}
     <script src="{{ asset('js/custom.js') }}"></script>
 
-    <script>
-        // laracast flash
-        $('#flash-overlay-modal').modal();
-        $('div.alert').not('.alert-important').delay(5000).fadeOut(350);
-    </script>
-
     @stack('scripts')
 </body>
 </html>

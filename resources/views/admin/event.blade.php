@@ -27,6 +27,8 @@
 
         @include('flash::message')
         @include('layouts.validation-errors')
+        {{-- custom --}}
+        @include('layouts.flash-success')
 
         {{-- content --}}
         <div class="form-group">
@@ -86,6 +88,9 @@
         </div>
     </div>
 </div>
+
+@include('layouts.confirm-delete')
+
 @endsection
 
 @push('scripts')
@@ -103,5 +108,36 @@
                 ]
             });
         });
+
+
+
+      // delete event
+      var id;
+      function deleteEvent(event_id, event_year) {
+          $('#modal-confirm-delete .modal-title').html('System Message');
+          $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + event_year + '</strong>?');
+          $('#modal-confirm-delete').modal();
+
+          id = event_id;
+      }
+      $('#btn-confirm-delete').click(function(event) {
+            /* Act on the event */
+            $.ajax({
+                type: "DELETE",
+                url: 'event/'+id,
+                success: function (data) {
+                    
+                    $('#modal-confirm-delete').modal('hide');
+                    dataTableRefresh('#events-table');
+                    printSuccessMsg(data.title, 'Deleted');
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+
+            });
+
+      });
     </script>
 @endpush
