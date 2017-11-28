@@ -92,6 +92,40 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="edit-event">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Event</h4>
+            </div>
+            <div class="modal-body">
+                <form  id="update-event-form" class="form-horizontal">
+
+                  {{ csrf_field() }}
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-4">Year:</label>
+                    <div class="col-sm-6">
+                        <input type="number" name="edit-year" id="edit-year" min="1999" max="2099" class="form-control" />
+                    </div>
+                  </div>
+
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-4 col-sm-10">
+                      <button type="submit" class="btn btn-primary btn-outline">Update
+                      <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
 @include('layouts.confirm-delete')
 
 @endsection
@@ -127,7 +161,7 @@
             /* Act on the event */
             $.ajax({
                 type: "DELETE",
-                url: 'event/'+id,
+                url: '{{ url('event').'/' }}'+id,
                 success: function (data) {
                     
                     $('#modal-confirm-delete').modal('hide');
@@ -142,5 +176,40 @@
             });
 
       });
+
+      function editEvent(eid, eyear){
+        id = eid;
+        $('#edit-year').val(eyear)
+        $('#edit-event').modal();
+      }
+
+      $('#update-event-form').submit(function(event) {
+          /* Act on the event */
+          event.preventDefault();
+
+          var year = $('#edit-year').val();
+            $.ajax({
+                type: "PATCH",
+                url: '{{ url('event').'/' }}'+id,
+                data: {
+                    year: year
+                },
+                success: function (data) {
+                    console.log(data);
+                    
+                    dataTableRefresh('#events-table');
+                    printSuccessMsg(data.title, 'Updated');
+                    $('#edit-event').modal('hide');
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+
+            });
+      });
+
+
+      
     </script>
 @endpush

@@ -53,7 +53,7 @@ class EventController extends Controller
                 return '
                     <div align="center">
                             <button class="btn btn-xs btn-info"><i class="fa fa-list"></i> Games</button>
-                            <button class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="editEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
@@ -69,6 +69,16 @@ class EventController extends Controller
         Event::destroy($event->id);
 
         return response()->json(['title' => $deleted]);
+    }
+
+    public function update(Event $event, Request $request)
+    {
+
+        $event->year = $request->year;
+
+        $event->save();
+
+        return response()->json(['title' => 'Year']);
     }
 
 }
