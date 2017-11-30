@@ -25,3 +25,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 // event
 Route::get('event/all', 'EventController@all')->name('event.all');
 Route::resource('event', 'EventController');
+
+// game types
+Route::get('gametype/all', 'GameTypeController@all')->name('gametype.all');
+Route::resource('gametype', 'GameTypeController');

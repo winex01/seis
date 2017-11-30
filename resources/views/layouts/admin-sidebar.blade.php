@@ -18,6 +18,10 @@
                     <li>
                         <a href="{{ route('event.index') }}"><i class="fa fa-list-alt fa-fw"></i> Events</a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('gametype.index') }}"><i class="fa fa-th fa-fw"></i> Game Types</a>
+                    </li>
                     {{-- <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
