@@ -165,7 +165,6 @@
       // delete event game
       var id;
       function deleteEventGame(param1, param2) {
-          $('#modal-confirm-delete .modal-title').html('System Message');
           $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + param2 + '</strong>?');
           $('#modal-confirm-delete').modal();
 

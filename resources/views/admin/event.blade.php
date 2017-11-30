@@ -151,7 +151,6 @@
       // delete event
       var id;
       function deleteEvent(event_id, event_year) {
-          $('#modal-confirm-delete .modal-title').html('System Message');
           $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + event_year + '</strong>?');
           $('#modal-confirm-delete').modal();
 

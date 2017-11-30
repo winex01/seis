@@ -156,7 +156,6 @@
   // delete gametype
   var id;
   function deleteGametype(gtid, gtdesc) {
-      $('#modal-confirm-delete .modal-title').html('System Message');
       $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + gtdesc + '</strong>?');
       $('#modal-confirm-delete').modal();
 
