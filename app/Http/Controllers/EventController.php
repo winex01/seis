@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DataTables;
 use App\Event;
+use App\GameType;
 
 class EventController extends Controller
 {
@@ -93,6 +94,21 @@ class EventController extends Controller
         return DataTables::of($events)->addColumn('action', function ($event) {
                 return '
 
+                ';
+            })
+             ->rawColumns(['action'])
+            ->make(true);
+    }
+
+    public function gameTypes()
+    {
+        $gametypes = GameType::select(['id', 'description', 'created_at']);
+        return DataTables::of($gametypes)->addColumn('action', function ($gametype) {
+                return '
+                    <div align="center">
+                            <button onclick="editGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="deleteGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
                 ';
             })
              ->rawColumns(['action'])

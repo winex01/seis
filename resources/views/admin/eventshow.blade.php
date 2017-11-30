@@ -39,7 +39,7 @@
 
                 {{-- content --}}
                 <div class="form-group">
-                    <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a data-toggle="modal" href='#add-game' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         Add Game
                     </a>
                 </div>
@@ -67,6 +67,37 @@
 <!-- /#wrapper -->
 
 
+<div class="modal fade" id="add-game">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Available Games</h4>
+            </div>
+            <div class="modal-body">
+                
+
+                <table id="gametype-table" class="table table-striped table-condensed" width="100%">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Description</th>
+                      <th>Created</th>
+                      <th><center>Action</center></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @include('layouts.confirm-delete')
 
 @endsection
@@ -81,6 +112,22 @@
                 columns: [
                     {data: 'id'},
                     {data: 'game'},
+                    {data: 'created_at'},
+                    {data: 'action'},
+                ]
+            });
+        });
+
+
+        // game type
+        $(function() {
+            $('#gametype-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ route('event.gameTypes') }}',
+                columns: [
+                    {data: 'id'},
+                    {data: 'description'},
                     {data: 'created_at'},
                     {data: 'action'},
                 ]
