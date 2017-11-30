@@ -100,19 +100,27 @@ class EventController extends Controller
             ->make(true);
     }
 
-    public function gameTypes()
+    public function gameTypes(Event $event)
     {
-        $gametypes = GameType::select(['id', 'description', 'created_at']);
+        $gametypes = GameType::select(['id', 'description', 'created_at'])->whereNotIn('id', $event->games->pluck('id'));
         return DataTables::of($gametypes)->addColumn('action', function ($gametype) {
                 return '
                     <div align="center">
-                            <button onclick="editGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
-                            <button onclick="deleteGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                            <button onclick="addEventGame('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-success"><i class="fa fa-plus-circle"></i> Add</button>
                     </div>
                 ';
             })
              ->rawColumns(['action'])
             ->make(true);
+    }
+
+    public function storeGameType(Request $request, Event $event)
+    {
+       $games = $event->games()->create([
+            'game' => $request->game,
+            'game_type_id' => $request->game_type_id
+        ]);
+        return response()->json(['title' => $games ]);
     }
 
 }

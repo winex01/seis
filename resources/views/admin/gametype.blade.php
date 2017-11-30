@@ -65,7 +65,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">New Game Type</h4>
+                <h4 class="modal-title">New Game</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="{{ route('gametype.store') }}">
@@ -101,7 +101,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Edit Game Type</h4>
+                <h4 class="modal-title">Edit Game</h4>
             </div>
             <div class="modal-body">
                 <form  id="update-gametype-form" class="form-horizontal">

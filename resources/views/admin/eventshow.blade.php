@@ -124,7 +124,7 @@
             $('#gametype-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ route('event.gameTypes') }}',
+                ajax: '{{ route('event.gameTypes', $event->id) }}',
                 columns: [
                     {data: 'id'},
                     {data: 'description'},
@@ -134,6 +134,33 @@
             });
         });
 
+        // add event game
+        function addEventGame(gtid, gtdesc)
+        {
+            
+            /* Act on the event */
+            $.ajax({
+                type: "POST",
+                url: '{{ route('event.store.gametype', $event->id) }}',
+                data: {
+                    game_type_id: gtid,
+                    game: gtdesc
+                },
+                success: function (data) {
+                    console.log(data);
+
+                    dataTableRefresh('#gametype-table');
+                    dataTableRefresh('#games-table');
+                    // printSuccessMsg(data.title, 'Deleted');
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+
+            });
+            
+        }
 
     </script>
 @endpush

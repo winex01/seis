@@ -23,9 +23,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // event
+Route::post('event/{event}/store/gametype', 'EventController@storeGameType')->name('event.store.gametype');
+Route::get('event/{event}/gameTypes', 'EventController@gameTypes')->name('event.gameTypes');
 Route::get('event/{event}/games', 'EventController@games')->name('event.games');
 Route::get('event/all', 'EventController@all')->name('event.all');
-Route::get('event/gameTypes', 'EventController@gameTypes')->name('event.gameTypes');
 Route::resource('event', 'EventController');
 
 // game types
