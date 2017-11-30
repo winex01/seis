@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\GameType;
 use DataTables;
 use App\Event;
-use App\GameType;
+use App\Game;
 
 class EventController extends Controller
 {
@@ -90,12 +91,12 @@ class EventController extends Controller
 
     public function games(Event $event)
     {
-        $events = $event->games;
-        return DataTables::of($events)->addColumn('action', function ($event) {
+        $games = $event->games;
+        return DataTables::of($games)->addColumn('action', function ($game) {
                 return '
                     <div align="center">
-                            <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
-                            <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
+                            <a href="#" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
+                            <button onclick="deleteEventGame('.$game->id.', \'' .$game->game. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 ';
             })
@@ -124,6 +125,15 @@ class EventController extends Controller
             'game_type_id' => $request->game_type_id
         ]);
         return response()->json(['title' => $games ]);
+    }
+
+    public function destroyGame(Game $game)
+    {
+        $deleted = $game->game;
+
+        Game::destroy($game->id);
+
+        return response()->json(['title' => $deleted]);
     }
 
 }

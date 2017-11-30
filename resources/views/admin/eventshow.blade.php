@@ -162,5 +162,35 @@
             
         }
 
+      // delete event game
+      var id;
+      function deleteEventGame(param1, param2) {
+          $('#modal-confirm-delete .modal-title').html('System Message');
+          $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + param2 + '</strong>?');
+          $('#modal-confirm-delete').modal();
+
+          id = param1;
+      }
+      $('#btn-confirm-delete').click(function(event) {
+            /* Act on the event */
+            $.ajax({
+                type: "DELETE",
+                url: '{{ url('event/game').'/' }}'+id,
+                success: function (data) {
+                    
+                    $('#modal-confirm-delete').modal('hide');
+                    dataTableRefresh('#gametype-table');
+                    dataTableRefresh('#games-table');
+                    printSuccessMsg(data.title, 'Deleted');
+
+                },
+                error: function (data) {
+                    console.log('Error:', data);
+                }
+
+            });
+
+      });
+
     </script>
 @endpush

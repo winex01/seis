@@ -27,10 +27,11 @@ Route::post('event/{event}/store/gametype', 'EventController@storeGameType')->na
 Route::get('event/{event}/gameTypes', 'EventController@gameTypes')->name('event.gameTypes');
 Route::get('event/{event}/games', 'EventController@games')->name('event.games');
 Route::get('event/all', 'EventController@all')->name('event.all');
+Route::DELETE('event/game/{game}', 'EventController@destroyGame')->name('event.destroy.game');
 Route::resource('event', 'EventController');
 
 // game types
 Route::get('gametype/all', 'GameTypeController@all')->name('gametype.all');
 Route::resource('gametype', 'GameTypeController');
 
-// events game
+
