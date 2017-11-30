@@ -22,7 +22,7 @@
                         </li>
 
                         <li class="active">
-                            <i class="fa fa-list-alt fa-fw"></i> 
+                            <i class="fa fa-calendar-o"></i> 
                             {{ $event->year }}</li>
                     </ol>
                 </div>
@@ -39,8 +39,8 @@
 
                 {{-- content --}}
                 <div class="form-group">
-                    <a data-toggle="modal" href='#add-game' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        Add Game
+                    <a data-toggle="modal" href='#include-game' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        Include Game
                     </a>
                 </div>
 
@@ -67,7 +67,7 @@
 <!-- /#wrapper -->
 
 
-<div class="modal fade" id="add-game">
+<div class="modal fade" id="include-game">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

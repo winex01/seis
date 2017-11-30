@@ -53,7 +53,7 @@ class EventController extends Controller
         return DataTables::of($events)->addColumn('action', function ($event) {
                 return '
                     <div align="center">
-                            <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-list"></i> Games</a>
+                            <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-television"></i> Games</a>
                             <button onclick="editEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
@@ -93,7 +93,10 @@ class EventController extends Controller
         $events = $event->games;
         return DataTables::of($events)->addColumn('action', function ($event) {
                 return '
-
+                    <div align="center">
+                            <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
+                            <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-warning"><i class="fa fa-trash"></i> Remove</button>
+                    </div>
                 ';
             })
              ->rawColumns(['action'])
