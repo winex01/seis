@@ -102,9 +102,14 @@ class GameTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(GameType $gametype)
     {
         //
+        $deleted = $gametype->description;
+
+        GameType::destroy($gametype->id);
+
+        return response()->json(['title' => $deleted]);
     }
 
     public function all()
@@ -115,7 +120,7 @@ class GameTypeController extends Controller
                 return '
                     <div align="center">
                             <button  class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
-                            <button  class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                            <button onclick="deleteGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
             })
