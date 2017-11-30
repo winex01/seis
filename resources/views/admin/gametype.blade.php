@@ -95,6 +95,44 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="edit-gametype">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit Game Type</h4>
+            </div>
+            <div class="modal-body">
+                <form  id="update-gametype-form" class="form-horizontal">
+
+                  {{ csrf_field() }}
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="edit-description">Game:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="edit-description" name="edit-description" placeholder="ex. Basketball, Chess" autofocus="">
+                    </div>
+                  </div>
+                
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary btn-outline">Save
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
 @include('layouts.confirm-delete')
 
 @endsection
@@ -144,6 +182,38 @@
 
   });
 
+
+  function editGametype(gtid, gtdesc){
+    id = gtid;
+    $('#edit-description').val(gtdesc)
+    $('#edit-gametype').modal();
+  }
+
+  $('#update-gametype-form').submit(function(event) {
+      /* Act on the event */
+      event.preventDefault();
+
+      var description = $('#edit-description').val();
+        $.ajax({
+            type: "PATCH",
+            url: '{{ url('gametype').'/' }}'+id,
+            data: {
+                description: description
+            },
+            success: function (data) {
+                console.log(data);
+                
+                dataTableRefresh('#gametype-table');
+                printSuccessMsg(data.title, 'Updated');
+                $('#edit-gametype').modal('hide');
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+
+        });
+  });
 
 </script>
 @endpush

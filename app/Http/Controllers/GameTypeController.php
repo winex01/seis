@@ -91,9 +91,14 @@ class GameTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(GameType $gametype, Request $request)
     {
-        //
+
+        $gametype->description = ucwords($request->description);
+
+        $gametype->save();
+
+        return response()->json(['title' => 'Game Type']);
     }
 
     /**
@@ -119,7 +124,7 @@ class GameTypeController extends Controller
         return DataTables::of($gametypes)->addColumn('action', function ($gametype) {
                 return '
                     <div align="center">
-                            <button  class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="editGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
