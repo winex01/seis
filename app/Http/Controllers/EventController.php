@@ -106,7 +106,7 @@ class EventController extends Controller
 
     public function gameTypes(Event $event)
     {
-        $gametypes = GameType::select(['id', 'description', 'created_at'])->whereNotIn('id', $event->games->pluck('id'));
+        $gametypes = GameType::select(['id', 'description', 'created_at'])->whereNotIn('id', $event->games->pluck('game_type_id'));
         return DataTables::of($gametypes)->addColumn('action', function ($gametype) {
                 return '
                     <div align="center">
