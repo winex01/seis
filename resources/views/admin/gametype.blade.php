@@ -33,7 +33,7 @@
 
                 {{-- content --}}
                 <div class="form-group">
-                    <a data-toggle="modal" href='#new-event' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a data-toggle="modal" href='#new-gametype' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         New Game
                     </a>
                 </div>
@@ -59,6 +59,41 @@
 
 </div>
 <!-- /#wrapper -->
+
+<div class="modal fade" id="new-gametype">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">New Game Type</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" action="{{ route('gametype.store') }}">
+
+                  {{ csrf_field() }}
+                  
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="description">Game:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="description" placeholder="ex. Basketball, Chess">
+                    </div>
+                  </div>
+                
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary btn-outline">Save
+                          <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
 
 @include('layouts.confirm-delete')
 
