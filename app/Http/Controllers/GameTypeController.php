@@ -49,6 +49,17 @@ class GameTypeController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'description' => 'required',
+        ]);
+
+        //validation success
+        $event = GameType::create([
+            'description' => ucwords($request->description)
+        ]);
+
+        flash('New game added successfully!')->success();
+        return back();
     }
 
     /**

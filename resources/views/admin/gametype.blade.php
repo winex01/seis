@@ -75,7 +75,7 @@
                   <div class="form-group">
                     <label class="control-label col-sm-2" for="description">Game:</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="description" placeholder="ex. Basketball, Chess">
+                      <input type="text" class="form-control" id="description" name="description" placeholder="ex. Basketball, Chess">
                     </div>
                   </div>
                 
