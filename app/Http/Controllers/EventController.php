@@ -52,7 +52,7 @@ class EventController extends Controller
         return DataTables::of($events)->addColumn('action', function ($event) {
                 return '
                     <div align="center">
-                            <button class="btn btn-xs btn-info"><i class="fa fa-list"></i> Games</button>
+                            <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-list"></i> Games</a>
                             <button onclick="editEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
@@ -79,6 +79,24 @@ class EventController extends Controller
         $event->save();
 
         return response()->json(['title' => 'Year']);
+    }
+
+    public function show(Event $event)
+    {
+
+        return view('admin.eventshow', compact('event'));
+    }
+
+    public function games(Event $event)
+    {
+        $events = $event->games;
+        return DataTables::of($events)->addColumn('action', function ($event) {
+                return '
+
+                ';
+            })
+             ->rawColumns(['action'])
+            ->make(true);
     }
 
 }
