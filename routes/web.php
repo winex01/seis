@@ -34,4 +34,8 @@ Route::resource('event', 'EventController');
 Route::get('gametype/all', 'GameTypeController@all')->name('gametype.all');
 Route::resource('gametype', 'GameTypeController');
 
+// teams
+Route::get('team/all', 'TeamController@all')->name('team.all');
+Route::resource('team', 'TeamController');
+
 
