@@ -33,7 +33,7 @@
 
                 {{-- content --}}
                 <div class="form-group">
-                    <a data-toggle="modal" href='#new-team' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
+                    <a data-toggle="modal" href='#add-team' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
                         Add Team
                     </a>
                 </div>
@@ -60,12 +60,12 @@
 </div>
 <!-- /#wrapper -->
 
-<div class="modal fade" id="new-team">
+<div class="modal fade" id="add-team">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">New Game</h4>
+                <h4 class="modal-title">Add Team</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="{{ route('team.store') }}">
@@ -73,9 +73,9 @@
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">Game:</label>
+                    <label class="control-label col-sm-2" for="description">Team:</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="description" name="description" placeholder="ex. Basketball, Chess">
+                      <input type="text" class="form-control" id="description" name="description" placeholder="Team Name">
                     </div>
                   </div>
                 

@@ -48,6 +48,17 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'description' => 'required',
+        ]);
+
+        //validation success
+        $event = Team::create([
+            'description' => ucwords($request->description)
+        ]);
+
+        flash('Team added successfully!')->success();
+        return back();
     }
 
     /**
