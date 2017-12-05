@@ -36,4 +36,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // overide default username which is email
+    public function username()
+    {
+        return 'username';
+    }
 }
