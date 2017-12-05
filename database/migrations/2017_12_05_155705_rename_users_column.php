@@ -29,7 +29,7 @@ class RenameUsersColumn extends Migration
         //
         Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('username', 'email');
-            // see user model and remove overiding user username
+            // remove protected $username
         });
     }
 }
