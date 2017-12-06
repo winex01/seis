@@ -38,4 +38,8 @@ Route::resource('gametype', 'GameTypeController');
 Route::get('team/all', 'TeamController@all')->name('team.all');
 Route::resource('team', 'TeamController');
 
+// users
+Route::get('user/all', 'UserController@all')->name('user.all');
+Route::resource('user', 'UserController');
+
 

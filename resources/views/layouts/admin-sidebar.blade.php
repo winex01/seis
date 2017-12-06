@@ -26,6 +26,11 @@
                     <li>
                         <a href="{{ route('team.index') }}"><i class="fa fa-users fa-fw"></i> Teams</a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                    </li>
+
                     {{-- <li>
                         <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
