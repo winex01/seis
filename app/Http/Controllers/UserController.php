@@ -41,7 +41,7 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name' => 'required|min:3|max:50',
-            'username' => 'required',
+            'username' => 'required|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -97,9 +97,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //
+        $deleted = $user->username;
+
+        User::destroy($user->id);
+
+        return response()->json(['title' => $deleted]);
     }
 
     public function all()
@@ -109,8 +114,8 @@ class UserController extends Controller
         return DataTables::of($users)->addColumn('action', function ($user) {
                 return '
                     <div align="center">
-                            <button onclick="editUser('.htmlentities($user). '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
-                            <button onclick="deleteUser('.htmlentities($user). '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                            <button onclick="editUser('.htmlentities($user).')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="deleteUser('.htmlentities($user).')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
             })

@@ -11,11 +11,18 @@ $.ajaxSetup({
 });
 // ------------------------------------------------------------------------------
 // refresh table
-function dataTableRefresh(tble){
-    // add new row dummy data just to complete the number of colum
+function dataTableRefresh(tble, col = 4){
+    // add new row dummy data just to complete the number of column
     // just to refresh the table
-    var newRow = '<tr><td>Winnie & Reyvelyn</td><td>Winnie & Reyvelyn</td><td>Winnie & Reyvelyn</td><td>Winnie & Reyvelyn</td></tr>';
-    $(tble).DataTable().row.add($(newRow)).draw();
+    var temp = '<tr>';
+    
+    for (var i = 0; i < col; i++) {
+        temp += '<td>Winnie Damayo</td>'
+    }
+
+    temp += '</tr>'
+
+    $(tble).DataTable().row.add($(temp)).draw();
 }
 // ------------------------------------------------------------------------------
 // flash message default is hide

@@ -39,7 +39,7 @@
                 </div>
 
 
-                <table id="team-table" class="table table-striped table-condensed">
+                <table id="users-table" class="table table-striped table-condensed">
                     <thead>
                     <tr>
                       <th>ID</th>
@@ -162,7 +162,7 @@
 @push('scripts')
 <script type="text/javascript">
     $(function() {
-        $('#team-table').DataTable({
+        $('#users-table').DataTable({
             processing: true,
             serverSide: true,
             ajax: '{{ route('user.all') }}',
@@ -178,21 +178,21 @@
 
   // delete team
   var id;
-  function deleteTeam(param1, param2) {
-      $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + param2 + '</strong>?');
+  function deleteUser(row) {
+      $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + row.name + '</strong>?');
       $('#modal-confirm-delete').modal();
 
-      id = param1;
+      id = row.id;
   }
   $('#btn-confirm-delete').click(function(event) {
         /* Act on the event */
         $.ajax({
             type: "DELETE",
-            url: '{{ url('team').'/' }}'+id,
+            url: '{{ url('user').'/' }}'+id,
             success: function (data) {
                 
                 $('#modal-confirm-delete').modal('hide');
-                dataTableRefresh('#team-table');
+                dataTableRefresh('#users-table', 5);
                 printSuccessMsg(data.title, 'Deleted');
 
             },
