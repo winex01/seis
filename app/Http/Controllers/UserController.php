@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -99,5 +100,21 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function all()
+    {
+        
+        $users = User::select(['id', 'name', 'username', 'created_at'])->where('user_type_id', 2);
+        return DataTables::of($users)->addColumn('action', function ($user) {
+                return '
+                    <div align="center">
+                            <button onclick="editUser('.htmlentities($user). '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="deleteUser('.htmlentities($user). '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                ';
+            })
+             ->rawColumns(['action'])
+            ->make(true);
     }
 }

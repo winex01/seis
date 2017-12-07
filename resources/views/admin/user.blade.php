@@ -43,7 +43,8 @@
                     <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Team Description</th>
+                      <th>Name</th>
+                      <th>Username</th>
                       <th>Created</th>
                       <th><center>Action</center></th>
                     </tr>
@@ -164,10 +165,11 @@
         $('#team-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('team.all') }}',
+            ajax: '{{ route('user.all') }}',
             columns: [
                 {data: 'id'},
-                {data: 'description'},
+                {data: 'name'},
+                {data: 'username'},
                 {data: 'created_at'},
                 {data: 'action'},
             ]
