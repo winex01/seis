@@ -118,25 +118,25 @@
 </div>
 
 {{-- update --}}
-<div class="modal fade" id="edit-team">
+<div class="modal fade" id="edit-user">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Edit Team</h4>
+                <h4 class="modal-title">Edit User</h4>
             </div>
             <div class="modal-body">
-                <form  id="update-team-form" class="form-horizontal">
+                <form id="update-user-form" class="form-horizontal">
 
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="edit-description">Team:</label>
+                    <label class="control-label col-sm-2" for="edit-name">Name:</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="edit-description" name="edit-description" placeholder="ex. Basketball, Chess" autofocus="">
+                      <input type="text" class="form-control" value="{{old('edit-name')}}" id="edit-name" name="edit-name" placeholder="Enter Name">
                     </div>
                   </div>
-                
+
                   <div class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-10">
                       <button type="submit" class="btn btn-primary btn-outline">Save
@@ -205,29 +205,29 @@
   });
 
 
-  function editTeam(param1, param2){
-    id = param1;
-    $('#edit-description').val(param2)
-    $('#edit-team').modal();
+  function editUser(row){
+    id = row.id;
+    $('#edit-name').val(row.name)
+    $('#edit-user').modal();
   }
 
-  $('#update-team-form').submit(function(event) {
+  $('#update-user-form').submit(function(event) {
       /* Act on the event */
       event.preventDefault();
 
-      var description = $('#edit-description').val();
+      var name = $('#edit-name').val();
         $.ajax({
             type: "PATCH",
-            url: '{{ url('team').'/' }}'+id,
+            url: '{{ url('user').'/' }}'+id,
             data: {
-                description: description
+                name: name
             },
             success: function (data) {
                 console.log(data);
                 
-                dataTableRefresh('#team-table');
+                dataTableRefresh('#users-table', 5);
                 printSuccessMsg(data.title, 'Updated');
-                $('#edit-team').modal('hide');
+                $('#edit-user').modal('hide');
 
             },
             error: function (data) {
