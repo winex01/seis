@@ -3,9 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SportManager;
 
 class SportsManagerController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +25,7 @@ class SportsManagerController extends Controller
     public function index()
     {
         //
+        return view('admin.sports-manager');
     }
 
     /**
@@ -35,8 +47,27 @@ class SportsManagerController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        $this->validate($request, [
+            'firstname' => 'required|min:2|max:50',
+            'middlename' => 'required|min:1|max:50',
+            'lastname' => 'required|min:2|max:50',
+            'username' => 'required|unique:sport_managers',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
 
+        $mngr = SportManager::create([
+            'firstname' => ucwords($request->firstname),
+            'middlename' => ucwords($request->middlename),
+            'lastname' => ucwords($request->lastname),
+            'suffix' => ucfirst($request->suffix),
+            'username' => $request->username,
+            'password' => bcrypt($request->password),
+        ]);
+
+        flash(ucwords($mngr->firstname.' '.ucwords($mngr->lastname)).' is added to user successfully!')->success();
+        return back();
+
+    }
     /**
      * Display the specified resource.
      *

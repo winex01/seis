@@ -27,6 +27,10 @@
                         <a href="{{ route('team.index') }}"><i class="fa fa-users fa-fw"></i> Teams</a>
                     </li>
 
+                    <li>
+                        <a href="{{ route('sportsmanager.index') }}"><i class="fa fa-user fa-fw"></i> Sports Manager</a>
+                    </li>
+
                     {{-- <li>
                         <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> Users</a>
                     </li> --}}
