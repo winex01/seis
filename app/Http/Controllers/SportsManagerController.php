@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SportManager;
+use DataTables;
+
 
 class SportsManagerController extends Controller
 {
@@ -111,5 +113,21 @@ class SportsManagerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function all()
+    {
+        
+        $mngers = SportManager::select(['id', 'firstname', 'middlename', 'lastname', 'suffix', 'created_at'])->where('active', true);
+        return DataTables::of($mngers)->addColumn('action', function ($mngr) {
+                return '
+                    <div align="center">
+                            <button onclick="editUser('.htmlentities($mngr).')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="deleteUser('.htmlentities($mngr).')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                    </div>
+                ';
+            })
+             ->rawColumns(['action'])
+            ->make(true);
     }
 }

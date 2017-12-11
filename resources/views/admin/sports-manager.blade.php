@@ -39,7 +39,21 @@
                 </div>
 
 
-                
+                <table id="sport-managers-table" class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>First Name</th>
+                      <th>Middle Name</th>
+                      <th>Last Name</th>
+                      <th>Suffix</th>
+                      <th>Created</th>
+                      <th><center>Action</center></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
                 {{-- / content --}}
             </div>
         </div>
@@ -123,7 +137,22 @@
 
 @push('scripts')
 <script type="text/javascript">
-    
+    $(function() {
+        $('#sport-managers-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('sportsmanager.all') }}',
+            columns: [
+                {data: 'id'},
+                {data: 'firstname'},
+                {data: 'middlename'},
+                {data: 'lastname'},
+                {data: 'suffix'},
+                {data: 'created_at'},
+                {data: 'action'},
+            ]
+        });
+    });
 
 </script>
 @endpush
