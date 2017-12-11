@@ -110,9 +110,13 @@ class SportsManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(SportManager $sportsmanager)
     {
         //
+        $sportsmanager->active = false;
+        $sportsmanager->save();
+
+        return response()->json(['title' => $sportsmanager->firstname.' '.$sportsmanager->lastname]);
     }
 
     public function all()
@@ -122,8 +126,8 @@ class SportsManagerController extends Controller
         return DataTables::of($mngers)->addColumn('action', function ($mngr) {
                 return '
                     <div align="center">
-                            <button onclick="editUser('.htmlentities($mngr).')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
-                            <button onclick="deleteUser('.htmlentities($mngr).')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
+                            <button onclick="editMngr('.htmlentities($mngr).')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="deleteMngr('.htmlentities($mngr).')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
             })

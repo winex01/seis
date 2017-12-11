@@ -154,5 +154,33 @@
         });
     });
 
+    var id;
+  function deleteMngr(row) {
+      $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete <strong>' + row.firstname +' '+ row.lastname +'</strong>?');
+      $('#modal-confirm-delete').modal();
+
+      id = row.id;
+      console.log(id);
+  }
+  $('#btn-confirm-delete').click(function(event) {
+        /* Act on the event */
+        $.ajax({
+            type: "DELETE",
+            url: '{{ url('sportsmanager').'/' }}'+id,
+            success: function (data) {
+                
+                $('#modal-confirm-delete').modal('hide');
+                dataTableRefresh('#sport-managers-table', 7);
+                printSuccessMsg(data.title, 'Deleted');
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+
+        });
+
+  });
+
 </script>
 @endpush
