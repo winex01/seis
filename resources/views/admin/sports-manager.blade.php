@@ -17,7 +17,7 @@
                         </li>
                         <li class="active">
                             <i class="fa fa-user fa-fw"></i> 
-                            Users</li>
+                            Sport Managers</li>
                     </ol>
                 </div>
             </div>
