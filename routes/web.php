@@ -39,11 +39,15 @@ Route::get('team/all', 'TeamController@all')->name('team.all');
 Route::resource('team', 'TeamController');
 
 // users
-Route::get('user/all', 'UserController@all')->name('user.all');
-Route::resource('user', 'UserController');
+// Route::get('user/all', 'UserController@all')->name('user.all');
+// Route::resource('user', 'UserController');
 
 // matches
 Route::get('event/{event}/matches', 'MatchesController@index')->name('matches.index');
+
+// sports manager
+Route::resource('sportsmanager', 'SportsManagerController');
+
 
 
 
