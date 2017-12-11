@@ -42,4 +42,8 @@ Route::resource('team', 'TeamController');
 Route::get('user/all', 'UserController@all')->name('user.all');
 Route::resource('user', 'UserController');
 
+// matches
+Route::get('matches/all', 'MatchesController@all')->name('matches.all');
+Route::resource('matches', 'MatchesController');
+
 

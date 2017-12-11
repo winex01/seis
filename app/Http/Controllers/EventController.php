@@ -95,7 +95,7 @@ class EventController extends Controller
         return DataTables::of($games)->addColumn('action', function ($game) {
                 return '
                     <div align="center">
-                            <a href="#" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
+                            <a href="'.route('matches.index').'" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
                             <button onclick="deleteEventGame('.$game->id.', \'' .$game->game. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 ';
