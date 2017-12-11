@@ -17,7 +17,7 @@
                         </li>
                         <li class="active">
                             <i class="fa fa-th fa-fw"></i> 
-                            Game Types</li>
+                            Sports</li>
                     </ol>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 {{-- content --}}
                 <div class="form-group">
                     <a data-toggle="modal" href='#new-gametype' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        New Game
+                        Add Sport
                     </a>
                 </div>
 
@@ -65,7 +65,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">New Game</h4>
+                <h4 class="modal-title">Add Sport</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" method="POST" action="{{ route('gametype.store') }}">
@@ -73,7 +73,7 @@
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="description">Game:</label>
+                    <label class="control-label col-sm-2" for="description">Description:</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="description" name="description" placeholder="ex. Basketball, Chess">
                     </div>
@@ -101,7 +101,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Edit Game</h4>
+                <h4 class="modal-title">Edit Sport</h4>
             </div>
             <div class="modal-body">
                 <form  id="update-gametype-form" class="form-horizontal">
@@ -109,7 +109,7 @@
                   {{ csrf_field() }}
                   
                   <div class="form-group">
-                    <label class="control-label col-sm-2" for="edit-description">Game:</label>
+                    <label class="control-label col-sm-2" for="edit-description">Description:</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control" id="edit-description" name="edit-description" placeholder="ex. Basketball, Chess" autofocus="">
                     </div>

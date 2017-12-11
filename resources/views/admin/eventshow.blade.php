@@ -40,7 +40,7 @@
                 {{-- content --}}
                 <div class="form-group">
                     <a data-toggle="modal" href='#include-game' class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i>
-                        Include Game
+                        Include Sport
                     </a>
                 </div>
 
@@ -49,7 +49,7 @@
                     <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Game</th>
+                      <th>Sport</th>
                       <th>Created</th>
                       <th><center>Action</center></th>
                     </tr>
@@ -72,7 +72,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Available Games</h4>
+                <h4 class="modal-title">Available Sports</h4>
             </div>
             <div class="modal-body">
                 

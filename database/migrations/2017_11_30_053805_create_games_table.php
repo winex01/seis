@@ -18,6 +18,8 @@ class CreateGamesTable extends Migration
             $table->string('game');
             $table->timestamps();
 
+            // no relationship
+
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 
