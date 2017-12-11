@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Event;
 
 class MatchesController extends Controller
 {
@@ -20,10 +21,10 @@ class MatchesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Event $event)
     {
         //
-        return view('admin.matches');
+        return view('admin.matches', compact('event'));
     }
 
     /**

@@ -21,9 +21,14 @@
                             <a href="{{ route('event.index') }}">Events</a>
                         </li>
 
-                        <li class="active">
+                        <li>
                             <i class="fa fa-calendar-o"></i> 
-                            {{ $event->year }}</li>
+                            <a href="{{ route('event.index') }}">{{ $event->year }}</a>
+                        </li>
+
+                        <li class="active">
+                            <i class="fa fa-users"></i> 
+                            Matches</li>
                     </ol>
                 </div>
             </div>
