@@ -99,11 +99,19 @@ class SportsManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SportManager $sportsmanager, Request $request)
     {
-        //
-    }
 
+        $sportsmanager->firstname = ucwords($request->firstname);
+        $sportsmanager->middlename = ucwords($request->middlename);
+        $sportsmanager->lastname = ucwords($request->lastname);
+        $sportsmanager->suffix = ucfirst($request->suffix);
+        $sportsmanager->username = $request->username;
+
+        $sportsmanager->save();
+
+        return response()->json(['title' => 'Sports Manager']);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -122,7 +130,7 @@ class SportsManagerController extends Controller
     public function all()
     {
         
-        $mngers = SportManager::select(['id', 'firstname', 'middlename', 'lastname', 'suffix', 'created_at'])->where('active', true);
+        $mngers = SportManager::select(['id', 'firstname', 'middlename', 'lastname', 'suffix', 'username', 'created_at'])->where('active', true);
         return DataTables::of($mngers)->addColumn('action', function ($mngr) {
                 return '
                     <div align="center">

@@ -130,6 +130,63 @@
 </div>
 
 
+{{-- update --}}
+<div class="modal fade" id="edit-mngr">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Edit Sports Manager</h4>
+      </div>
+      <div class="modal-body">
+            <form id="update-mngr-form" class="form-horizontal">
+
+            {{ csrf_field() }}
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="edit-firstname">FN:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="edit-firstname" value="{{old('edit-firstname')}}" name="edit-firstname" placeholder="First Name">
+              </div>
+              <label class="control-label col-sm-2" for="edit-middlename">MN:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="edit-middlename" value="{{old('edot-middlename')}}" name="edot-middlename" placeholder="Middle Name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="edit-lastname">LN:</label>
+              <div class="col-sm-4"> 
+                <input type="text" class="form-control" id="edit-lastname" value="{{old('edit-lastname')}}" name="edit-lastname" placeholder="Last Name">
+              </div>
+              <label class="control-label col-sm-2" for="edit-suffix">Suffix:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="edit-suffix" value="{{old('edit-suffix')}}" name="edit-suffix" placeholder="eg. II, Jr.">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label col-sm-2" for="edit-username">UN:</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" id="edit-username" value="{{old('edit-username')}}" name="edit-username" placeholder="Username">
+              </div>
+            </div>
+
+            <div class="form-group"> 
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary btn-outline">Update
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 @include('layouts.confirm-delete')
 
@@ -180,6 +237,52 @@
 
         });
 
+  });
+
+  function editMngr(row){
+    id = row.id;
+    $('#edit-firstname').val(row.firstname)
+    $('#edit-middlename').val(row.middlename)
+    $('#edit-lastname').val(row.lastname)
+    $('#edit-suffix').val(row.suffix)
+    $('#edit-username').val(row.username)
+    $('#edit-mngr').modal();
+
+    console.log(row.username);
+  }
+
+  $('#update-mngr-form').submit(function(event) {
+      /* Act on the event */
+      event.preventDefault();
+
+      var firstname = $('#edit-firstname').val();
+      var middlename = $('#edit-middlename').val();
+      var lastname = $('#edit-lastname').val();
+      var suffix = $('#edit-suffix').val();
+      var username = $('#edit-username').val();
+        $.ajax({
+            type: "PATCH",
+            url: '{{ url('sportsmanager').'/' }}'+id,
+            data: {
+                firstname: firstname,
+                middlename: middlename,
+                lastname: lastname,
+                suffix: suffix,
+                username: username
+            },
+            success: function (data) {
+                console.log(data);
+                
+                dataTableRefresh('#sport-managers-table', 7);
+                printSuccessMsg(data.title, 'Updated');
+                $('#edit-mngr').modal('hide');
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+
+        });
   });
 
 </script>
