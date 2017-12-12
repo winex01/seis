@@ -97,6 +97,43 @@
 </div>
 
 
+{{-- assign manager --}}
+<div class="modal fade" id="modal-assign-mngr">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Assign Sport's Manager</h4>
+            </div>
+            <div class="modal-body">
+               <form class="form-horizontal" action="/action_page.php">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2">Manager:</label>
+                    <div class="col-sm-10">
+                          <label for="sel1">Select list:</label>
+                          <select class="form-control" id="mngr-id">
+                            @foreach($sportManagers as $sportManager)
+                                <option>{{ $sportManager->fullName }}</option>
+                            @endforeach
+                          </select>
+                    </div>
+                  </div>
+                  <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary btn-outline">Save
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form> 
+            </div>
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>
+
 
 @include('layouts.confirm-delete')
 
@@ -190,6 +227,13 @@
             });
 
       });
+
+      // assign mngr
+      function assignMngr(data){
+        console.log(data);
+
+        $('#modal-assign-mngr').modal();
+      }
 
     </script>
 @endpush

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\SportManager;
 use Carbon\Carbon;
 use App\GameType;
 use DataTables;
@@ -85,8 +86,10 @@ class EventController extends Controller
 
     public function show(Event $event)
     {
+        // select available sport's manager and pass 
+        $sportManagers = SportManager::where('active', 1)->get();
 
-        return view('admin.eventshow', compact('event'));
+        return view('admin.eventshow', compact('event', 'sportManagers'));
     }
 
     public function games(Event $event)
@@ -96,6 +99,7 @@ class EventController extends Controller
                 return '
                     <div align="center">
                             <a href="'.route('matches.index', [$game->event->id]).'" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
+                             <button onclick="assignMngr('.htmlentities($game).')" class="btn btn-xs btn-success"><i class="fa fa-user"></i> Assign Mngr.</button>
                             <button onclick="deleteEventGame('.$game->id.', \'' .$game->game. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 ';
