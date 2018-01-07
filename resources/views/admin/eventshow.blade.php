@@ -108,14 +108,19 @@
                 <h4 class="modal-title">Assign Sport's Manager</h4>
             </div>
             <div class="modal-body">
-               <form class="form-horizontal" action="/action_page.php">
+               <form class="form-horizontal" action="{{ route('game.assignManager') }}" method="POST">
+
+                {{ csrf_field() }}
+
+                <input type="hidden" name="game_id" id="game_id">
+
                   <div class="form-group">
                     <label class="control-label col-sm-2">Manager:</label>
                     <div class="col-sm-10">
                           <label for="sel1">Select list:</label>
-                          <select class="form-control" id="mngr-id">
+                          <select class="form-control" name="manager_id">
                             @foreach($sportManagers as $sportManager)
-                                <option>{{ $sportManager->fullName }}</option>
+                                <option value="{{ $sportManager->id }}">{{ $sportManager->fullName }}</option>
                             @endforeach
                           </select>
                     </div>
@@ -236,10 +241,12 @@
 
       // assign mngr
       function assignMngr(data){
-        console.log(data);
+        // console.log(data);
+
+        $('#game_id').val(data.id);
 
         $('#modal-assign-mngr').modal();
       }
 
     </script>
-@endpush
+@endpush    
