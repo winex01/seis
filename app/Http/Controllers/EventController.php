@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SportManager;
+use App\Manager;
 use Carbon\Carbon;
 use App\GameType;
 use DataTables;
@@ -87,7 +87,7 @@ class EventController extends Controller
     public function show(Event $event)
     {
         // select available sport's manager and pass 
-        $sportManagers = SportManager::where('active', 1)->get();
+        $sportManagers = Manager::where('active', 1)->get();
 
         return view('admin.eventshow', compact('event', 'sportManagers'));
     }
