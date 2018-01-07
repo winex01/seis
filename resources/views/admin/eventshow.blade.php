@@ -82,9 +82,8 @@
                     <thead>
                     <tr>
                       <th>ID</th>
-                      <th>Description</th>
+                      <th>Sport</th>
                       <th>Created</th>
-                      <th>Sport's</th>
                       <th><center>Action</center></th>
                     </tr>
                     </thead>
@@ -198,7 +197,7 @@
                     console.log(data);
 
                     dataTableRefresh('#gametype-table');
-                    dataTableRefresh('#games-table');
+                    dataTableRefresh('#games-table', 5);
                     // printSuccessMsg(data.title, 'Deleted');
 
                 },
@@ -227,7 +226,7 @@
                     
                     $('#modal-confirm-delete').modal('hide');
                     dataTableRefresh('#gametype-table');
-                    dataTableRefresh('#games-table');
+                    dataTableRefresh('#games-table', 5);
                     printSuccessMsg(data.title, 'Deleted');
 
                 },
