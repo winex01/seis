@@ -108,6 +108,11 @@ class GameController extends Controller
 
         $game->manager()->save($manager);
 
+        $fn = $manager->firstname;
+        $ln = $manager->lastname;
+
+        flash($fn.' '.$ln.' is assigned as ' .$game->game. ' sport\'s manager.')->success();
+
         return  back();
     }
 }
