@@ -104,7 +104,12 @@ class EventController extends Controller
                     </div>
                 ';
             })
-             ->rawColumns(['action'])
+            ->addColumn('manager', function ($game){
+                $fn = $game->manager->pluck('firstname')->first();
+                $ln = $game->manager->pluck('lastname')->first();
+                return $fn.' '.$ln;
+            })
+            ->rawColumns(['action', 'manager'])
             ->make(true);
     }
 

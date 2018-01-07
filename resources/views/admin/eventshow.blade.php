@@ -50,6 +50,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Sport</th>
+                      <th>Manager</th>
                       <th>Created</th>
                       <th><center>Action</center></th>
                     </tr>
@@ -147,9 +148,13 @@
                 processing: true,
                 serverSide: true,
                 ajax: '{{ route('event.games', $event->id) }}',
+                // columnDefs: [
+                //     { "width": "250", "targets": 4 }
+                // ],
                 columns: [
                     {data: 'id'},
                     {data: 'game'},
+                    {data: 'manager'},
                     {data: 'created_at'},
                     {data: 'action'},
                 ]

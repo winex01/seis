@@ -19,9 +19,10 @@ class Game extends Model
     	return $this->belongsTo(Event::class);
     }
 
-    public function sportManager()
+    public function manager()
     {
-        return $this->belongsTo(SportManager::class);
+         return $this->belongsToMany(Manager::class);
     }
+
 
 }
