@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SportManager;
+use App\Manager;
 use DataTables;
 
 
-class SportsManagerController extends Controller
+class ManagerController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -27,7 +27,7 @@ class SportsManagerController extends Controller
     public function index()
     {
         //
-        return view('admin.sports-manager');
+        return view('admin.manager');
     }
 
     /**
@@ -53,11 +53,11 @@ class SportsManagerController extends Controller
             'firstname' => 'required|min:2|max:50',
             'middlename' => 'required|min:1|max:50',
             'lastname' => 'required|min:2|max:50',
-            'username' => 'required|unique:sport_managers',
+            'username' => 'required|unique:managers',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        $mngr = SportManager::create([
+        $mngr = Manager::create([
             'firstname' => ucwords($request->firstname),
             'middlename' => ucwords($request->middlename),
             'lastname' => ucwords($request->lastname),
@@ -99,16 +99,16 @@ class SportsManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(SportManager $sportsmanager, Request $request)
+    public function update(Manager $manager, Request $request)
     {
 
-        $sportsmanager->firstname = ucwords($request->firstname);
-        $sportsmanager->middlename = ucwords($request->middlename);
-        $sportsmanager->lastname = ucwords($request->lastname);
-        $sportsmanager->suffix = ucfirst($request->suffix);
-        $sportsmanager->username = $request->username;
+        $manager->firstname = ucwords($request->firstname);
+        $manager->middlename = ucwords($request->middlename);
+        $manager->lastname = ucwords($request->lastname);
+        $manager->suffix = ucfirst($request->suffix);
+        $manager->username = $request->username;
 
-        $sportsmanager->save();
+        $manager->save();
 
         return response()->json(['title' => 'Sports Manager']);
     }
@@ -118,19 +118,19 @@ class SportsManagerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SportManager $sportsmanager)
+    public function destroy(Manager $manager)
     {
         //
-        $sportsmanager->active = false;
-        $sportsmanager->save();
+        $manager->active = false;
+        $manager->save();
 
-        return response()->json(['title' => $sportsmanager->firstname.' '.$sportsmanager->lastname]);
+        return response()->json(['title' => $manager->firstname.' '.$manager->lastname]);
     }
 
     public function all()
     {
         
-        $mngers = SportManager::select(['id', 'firstname', 'middlename', 'lastname', 'suffix', 'username', 'created_at'])->where('active', true);
+        $mngers = Manager::select(['id', 'firstname', 'middlename', 'lastname', 'suffix', 'username', 'created_at'])->where('active', true);
         return DataTables::of($mngers)->addColumn('action', function ($mngr) {
                 return '
                     <div align="center">

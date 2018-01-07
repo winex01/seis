@@ -28,7 +28,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('sportsmanager.index') }}"><i class="fa fa-user fa-fw"></i> Sports Manager</a>
+                        <a href="{{ route('manager.index') }}"><i class="fa fa-user fa-fw"></i> Sports Manager</a>
                     </li>
 
                     {{-- <li>

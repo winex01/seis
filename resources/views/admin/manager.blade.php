@@ -71,7 +71,7 @@
         <h4 class="modal-title">New Sports Manager</h4>
       </div>
       <div class="modal-body">
-            <form class="form-horizontal" method="POST" action="{{ route('sportsmanager.store') }}">
+            <form class="form-horizontal" method="POST" action="{{ route('manager.store') }}">
 
             {{ csrf_field() }}
 
@@ -198,7 +198,7 @@
         $('#sport-managers-table').DataTable({
             processing: true,
             serverSide: true,
-            ajax: '{{ route('sportsmanager.all') }}',
+            ajax: '{{ route('manager.all') }}',
             columns: [
                 {data: 'id'},
                 {data: 'firstname'},
@@ -223,7 +223,7 @@
         /* Act on the event */
         $.ajax({
             type: "DELETE",
-            url: '{{ url('sportsmanager').'/' }}'+id,
+            url: '{{ url('manager').'/' }}'+id,
             success: function (data) {
                 
                 $('#modal-confirm-delete').modal('hide');
@@ -262,7 +262,7 @@
       var username = $('#edit-username').val();
         $.ajax({
             type: "PATCH",
-            url: '{{ url('sportsmanager').'/' }}'+id,
+            url: '{{ url('manager').'/' }}'+id,
             data: {
                 firstname: firstname,
                 middlename: middlename,

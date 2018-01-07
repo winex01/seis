@@ -83,6 +83,7 @@
                       <th>ID</th>
                       <th>Description</th>
                       <th>Created</th>
+                      <th>Sport's</th>
                       <th><center>Action</center></th>
                     </tr>
                     </thead>
