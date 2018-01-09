@@ -22,6 +22,7 @@ Auth::routes();
 // manager auth
 Route::get('managerlogin', 'ManagerLoginController@showLoginForm')->name('managerLogin');
 Route::post('managerlogin', 'ManagerLoginController@login')->name('managerLogin.submit');
+Route::get('managerlogin/logout', 'ManagerLoginController@logout')->name('managerLogin.logout');
 
 // manager template
 Route::get('manager/home', 'ManagerHomeController@home')->name('managerHome.home');

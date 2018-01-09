@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ManagerHomeController extends Controller
 {
+    
+    public function __construct()
+    {
+        $this->middleware('manager.auth');
+    }
     /**
      * Display a listing of the resource.
      *

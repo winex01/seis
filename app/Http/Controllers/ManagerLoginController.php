@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Manager;
 use Illuminate\Support\Facades\Hash;
+use Session;
+
 
 
 class ManagerLoginController extends Controller
@@ -45,9 +47,12 @@ class ManagerLoginController extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-
+        $request->session()->forget('manager_id');
+        session()->forget('manager_id');
+        Session::flush();
+        return redirect()->route('managerLogin');
     }
 
     
