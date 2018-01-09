@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Manager;
 use DataTables;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class ManagerController extends Controller
@@ -63,7 +65,7 @@ class ManagerController extends Controller
             'lastname' => ucwords($request->lastname),
             'suffix' => ucfirst($request->suffix),
             'username' => $request->username,
-            'password' => bcrypt($request->password),
+            'password' =>  Hash::make($request->password),
         ]);
 
         flash(ucwords($mngr->firstname.' '.ucwords($mngr->lastname)).' is added to user successfully!')->success();

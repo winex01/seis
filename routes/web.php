@@ -19,6 +19,13 @@ Route::get('/', function () {
 // auth
 Auth::routes();
 
+// manager auth
+Route::get('managerlogin', 'ManagerLoginController@showLoginForm')->name('managerLogin');
+Route::post('managerlogin', 'ManagerLoginController@login')->name('managerLogin.submit');
+
+// manager template
+Route::get('manager/home', 'ManagerHomeController@home')->name('managerHome.home');
+
 // home
 Route::get('/home', 'HomeController@index')->name('home');
 

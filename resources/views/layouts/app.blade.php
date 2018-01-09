@@ -41,7 +41,10 @@
             @guest
                 @unless(request()->is('login'))
                     <li>
-                        <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Login </a>
+                        <a href="{{ route('login') }}"><i class="fa fa-sign-in"></i> Admin</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('managerLogin') }}"><i class="fa fa-sign-in"></i> Manager</a>
                     </li>
                 @endunless
             @else
