@@ -33,7 +33,8 @@ class ManagerLoginController extends Controller
         if ($check) {
         	if (Hash::check($request->password, $check->password)) {
 			    // The passwords match...
-			    $request->session()->put('manager_id', $check->id);
+                $request->session()->put('manager_id', $check->id);
+			    $request->session()->put('full_name', $check->firstname .' '. $check->lastname);
                 return redirect()->route('managerHome.home');
 			}else{
 			    // invalid pass

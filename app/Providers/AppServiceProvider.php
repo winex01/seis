@@ -14,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
+        view()->share('data', [1, 2, 3]);
     }
 
     /**
