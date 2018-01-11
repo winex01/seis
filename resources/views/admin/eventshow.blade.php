@@ -152,9 +152,9 @@
                 processing: true,
                 serverSide: true,
                 ajax: '{{ route('event.games', $event->id) }}',
-                // columnDefs: [
-                //     { "width": "250", "targets": 4 }
-                // ],
+                columnDefs: [
+                    { "width": "250", "targets": 4 }
+                ],
                 columns: [
                     {data: 'id'},
                     {data: 'game'},

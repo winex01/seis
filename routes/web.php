@@ -31,6 +31,7 @@ Route::get('manager/home', 'ManagerHomeController@home')->name('managerHome.home
 Route::get('/home', 'HomeController@index')->name('home');
 
 // event
+Route::get('event/display/{event}', 'EventController@display')->name('event.display');
 Route::post('event/{event}/store/gametype', 'EventController@storeGameType')->name('event.store.gametype');
 Route::get('event/{event}/gameTypes', 'EventController@gameTypes')->name('event.gameTypes');
 Route::get('event/{event}/games', 'EventController@games')->name('event.games');

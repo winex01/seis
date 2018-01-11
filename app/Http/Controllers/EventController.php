@@ -51,17 +51,25 @@ class EventController extends Controller
     public function all()
     {
         
-        $events = Event::select(['id', 'year', 'created_at']);
+        $events = Event::select(['id', 'year', 'created_at', 'is_open']);
         return DataTables::of($events)->addColumn('action', function ($event) {
+            $temp = '';
+            $temp2 = 'btn-success';
+            if ($event->is_open) {
+                $temp = 'disabled';
+                $temp2 = 'btn-default';
+            }
                 return '
                     <div align="center">
+                            <button '.$temp.' onclick="display('.htmlentities($event).')" class="btn btn-xs '.$temp2.'"><i class="fa fa-check"></i> Display</button>
                             <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-television"></i> Games</a>
                             <button onclick="editEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
             })
-             ->rawColumns(['action'])
+            ->editColumn('is_open', '{{ ($is_open) ? \'Displayed\': \'\' }}')
+            ->rawColumns(['action'])
             ->make(true);
     }
 
@@ -143,6 +151,17 @@ class EventController extends Controller
         Game::destroy($game->id);
 
         return response()->json(['title' => $deleted]);
+    }
+
+    public function display(Event $event)
+    {
+
+        Event::where('id', '!=', $event->id)->update(['is_open' => false]);
+
+        $event->is_open = true;
+        $event->save();
+
+        return response()->json(['title' => $event->year]);
     }
 
 }

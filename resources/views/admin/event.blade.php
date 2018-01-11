@@ -45,6 +45,7 @@
                       <th>ID</th>
                       <th>Year</th>
                       <th>Created</th>
+                      <th>Status</th>
                       <th><center>Action</center></th>
                     </tr>
                     </thead>
@@ -141,6 +142,7 @@
                     {data: 'id'},
                     {data: 'year'},
                     {data: 'created_at'},
+                    {data: 'is_open'},
                     {data: 'action'},
                 ]
             });
@@ -164,7 +166,7 @@
                 success: function (data) {
                     
                     $('#modal-confirm-delete').modal('hide');
-                    dataTableRefresh('#events-table');
+                    dataTableRefresh('#events-table', 5);
                     printSuccessMsg(data.title, 'Deleted');
 
                 },
@@ -196,7 +198,7 @@
                 success: function (data) {
                     console.log(data);
                     
-                    dataTableRefresh('#events-table');
+                    dataTableRefresh('#events-table', 5);
                     printSuccessMsg(data.title, 'Updated');
                     $('#edit-event').modal('hide');
 
@@ -208,6 +210,24 @@
             });
       });
 
+
+      // display
+      function display(row){
+          $.ajax({
+              type: "GET",
+              url: '{{ url('event/display').'/' }}' + row.id,
+              success: function (data) {
+                  console.log(data);
+                  
+                  dataTableRefresh('#events-table', 5);
+                  printSuccessMsg(data.title, 'Displayed');
+              },
+              error: function (data) {
+                  console.log('Error:', data);
+              }
+
+          });
+      }
 
       
     </script>
