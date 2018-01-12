@@ -13,9 +13,11 @@
                         <!-- /input-group -->
                     </li>
 
-                    <li>
-                        <a href="{{ route('home') }}"><i class="fa fa-home fa-fw"></i> Home</a>
-                    </li>
+                    @foreach($navs as $nav)
+                        <li>
+                            <a href="#"><i class="fa fa-home fa-circle-thin"></i> {{ $nav }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

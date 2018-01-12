@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Session;
+use App\Manager;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,8 +15,40 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        view()->composer('*', function ($view) 
+        {
+            $view->with('manager_id', \Session::get('manager_id') );    
+
+            $navs = [];
+            $manager_id = $view->manager_id;
+
+            if ($manager_id != null || !empty($manager_id)) {
+
+                $manager = Manager::findOrFail($manager_id);
+
+                foreach ($manager->games as $value) {
+
+                    if (!in_array($value->game, $navs)) {
+                        $navs[$value->id] = $value->game;
+                    }
+                }
+
+            }
+            
+            view()->share('navs', $navs);
+        
+        }); 
+
+
         //
-        view()->share('data', [1, 2, 3]);
+        // $manager_id = Session::all('manager_id');
+        // dd($manager_id);
+        // $manager = Manager::findOrFail($manager_id);
+
+        // dd($manager);
+
+        
     }
 
     /**

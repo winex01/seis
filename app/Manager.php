@@ -13,4 +13,9 @@ class Manager extends Model
 	{
 	    return "{$this->firstname} {$this->middlename[0]}. {$this->lastname} {$this->suffix}";
 	}
+
+	public function games()
+	{
+		return $this->belongsToMany(Game::class);
+	}
 }
