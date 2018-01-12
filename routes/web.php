@@ -60,5 +60,6 @@ Route::resource('manager', 'managerController');
 
 //game
 Route::post('game/assignManager', 'GameController@assignManager')->name('game.assignManager');
+Route::resource('manager/sport', 'sportController');
 
 
