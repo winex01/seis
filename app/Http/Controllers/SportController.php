@@ -44,10 +44,14 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show($id)
     {
         //
-        dd($game);
+        $game = Game::findOrFail($id);
+
+        // $game = $game->game;
+        // $game_id = $game->id;
+        return view('manager.sport', compact('game'));
 
     }
 
