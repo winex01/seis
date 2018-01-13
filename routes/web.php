@@ -52,7 +52,7 @@ Route::resource('team', 'TeamController');
 // Route::resource('user', 'UserController');
 
 // matches
-Route::get('event/{event}/matches', 'MatchesController@index')->name('matches.index');
+// Route::get('event/{event}/matches', 'MatchesController@index')->name('matches.index');
 
 // sports manager
 Route::get('manager/all', 'managerController@all')->name('manager.all');

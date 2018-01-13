@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Crypt;
 use Session;
 use App\Manager;
 
@@ -35,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
                     }
 
                     if (!in_array($value->game, $navs)) {
-                        $navs[Crypt::encryptString($value->id)] = $value->game;
+                        $navs[$value->id] = $value->game;
                     }
                 }
 

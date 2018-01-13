@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 use App\Game;
+use App\Manager;
 
 class SportController extends Controller
 {
@@ -45,15 +45,22 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($encrypt_id)
+    public function show($id, Request $request)
     {
-
-        $id = Crypt::decryptString($encrypt_id);
         //
         $game = Game::findOrFail($id);
 
-        // $game = $game->game;
-        // $game_id = $game->id;
+        if (!$game->event->is_open) {
+            abort(404);
+        }
+
+        $manager_id = $request->session()->get('manager_id');
+
+        // $game = $game->manager->where('id', $manager_id)->first();
+        if ($game->manager->where('id', $manager_id)->first() === null) {
+            abort(404);
+        }
+
         return view('manager.sport', compact('game'));
 
     }

@@ -3,28 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Event;
 
-class MatchesController extends Controller
+class MatchController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Event $event)
+    public function index()
     {
         //
-        return view('admin.matches', compact('event'));
     }
 
     /**
@@ -91,21 +80,5 @@ class MatchesController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function all()
-    {
-        
-        $teams = \App\Team::select(['id', 'description', 'created_at']);
-        return \DataTables::of($teams)->addColumn('action', function ($team) {
-                return '
-                    <div align="center">
-                            <button onclick="editTeam('.$team->id.', \'' .$team->description. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
-                            <button onclick="deleteTeam('.$team->id.', \'' .$team->description. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
-                    </div>
-                ';
-            })
-             ->rawColumns(['action'])
-            ->make(true);
     }
 }
