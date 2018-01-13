@@ -212,15 +212,18 @@
 
 
       // display
-      function display(row){
+      function eventStatus(row, status){
+
           $.ajax({
               type: "GET",
-              url: '{{ url('event/display').'/' }}' + row.id,
+              url: '{{ url('event/eventstatus').'/' }}' + row.id,
+              data:{
+                status: status
+              },
               success: function (data) {
-                  console.log(data);
                   
                   dataTableRefresh('#events-table', 5);
-                  printSuccessMsg(data.title, 'Displayed');
+                  printSuccessMsg(data.title, data.status);
               },
               error: function (data) {
                   console.log('Error:', data);

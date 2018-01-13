@@ -53,22 +53,21 @@ class EventController extends Controller
         
         $events = Event::select(['id', 'year', 'created_at', 'is_open']);
         return DataTables::of($events)->addColumn('action', function ($event) {
-            $temp = '';
-            $temp2 = 'btn-success';
+            
+            $temp = '<button onclick="eventStatus('.htmlentities($event).', 1)" class="btn btn-xs btn-success"><i class="fa fa-check"></i> Open</button>';
             if ($event->is_open) {
-                $temp = 'disabled';
-                $temp2 = 'btn-default';
+                $temp = '<button onclick="eventStatus('.htmlentities($event).', 0)" class="btn btn-xs btn-danger"><i class="fa fa-remove"></i> Close</button>';
             }
                 return '
                     <div align="center">
-                            <button '.$temp.' onclick="display('.htmlentities($event).')" class="btn btn-xs '.$temp2.'"><i class="fa fa-check"></i> Display</button>
+                            '.$temp.'
                             <a href="'.route('event.show', $event->id).'" class="btn btn-xs btn-info"><i class="fa fa-television"></i> Games</a>
                             <button onclick="editEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteEvent('.$event->id.', \'' .$event->year. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';
             })
-            ->editColumn('is_open', '{{ ($is_open) ? \'Displayed\': \'\' }}')
+            ->editColumn('is_open', '{{ ($is_open) ? \'Open\': \'\' }}')
             ->rawColumns(['action'])
             ->make(true);
     }
@@ -153,15 +152,29 @@ class EventController extends Controller
         return response()->json(['title' => $deleted]);
     }
 
-    public function display(Event $event)
+    public function eventstatus(Event $event, Request $request)
     {
 
-        Event::where('id', '!=', $event->id)->update(['is_open' => false]);
+        $status = null;
 
-        $event->is_open = true;
-        $event->save();
+        if ($request->status == 1) {
+            Event::where('id', '!=', $event->id)->update(['is_open' => false]);
 
-        return response()->json(['title' => $event->year]);
+            $event->is_open = true;
+            $event->save();
+
+            $status = 'Open';    
+        }else {
+            $event->is_open = false;
+            $event->save();
+
+            $status = 'Close';    
+        }
+
+
+        
+
+        return response()->json(['title' => $event->year, 'status' => $status]);
     }
 
 }
