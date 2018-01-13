@@ -29,6 +29,10 @@ class AppServiceProvider extends ServiceProvider
 
                 foreach ($manager->games as $value) {
 
+                    if (!$value->event->is_open) {
+                        continue;
+                    }
+
                     if (!in_array($value->game, $navs)) {
                         $navs[$value->id] = $value->game;
                     }
