@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use App\Game;
 
 class SportController extends Controller
@@ -44,8 +45,10 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($encrypt_id)
     {
+
+        $id = Crypt::decryptString($encrypt_id);
         //
         $game = Game::findOrFail($id);
 

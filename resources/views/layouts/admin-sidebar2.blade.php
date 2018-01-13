@@ -13,9 +13,9 @@
                         <!-- /input-group -->
                     </li>
 
-                    @foreach($navs as $game_id => $nav)
+                    @foreach($navs as $encrypt_game_id => $nav)
                         <li>
-                            <a href="{{ route('sport.show', [$game_id]) }}"><i class="fa fa-circle-thin"></i> {{ $nav }}</a>
+                            <a href="{{ route('sport.show', [$encrypt_game_id]) }}"><i class="fa fa-circle-thin"></i> {{ $nav }}</a>
                         </li>
                     @endforeach
                 </ul>
