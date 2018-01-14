@@ -2,6 +2,8 @@
 
 @section('sidebar')
     @include('layouts.admin-sidebar2')
+@endsection
+
 @section('content')
  <div id="wrapper">
 

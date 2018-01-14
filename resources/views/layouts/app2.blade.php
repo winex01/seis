@@ -22,6 +22,8 @@
     {{-- datatables --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
 
+    @stack('heads')
+
 </head>
 <body>
     <!-- Navigation -->
