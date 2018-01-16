@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Game;
 use App\Match;
 use DataTables;
+use Carbon\Carbon;
 
 class MatchController extends Controller
 {
@@ -124,6 +125,9 @@ class MatchController extends Controller
             })
             ->editColumn('team2_id', function ($match) {
                 return $match->team2->pluck('description')->first();
+            })
+            ->editColumn('schedule', function ($match) {
+                return Carbon::parse($match->schedule)->toDayDateTimeString();
             })
             ->make(true);
 
