@@ -104,7 +104,7 @@
                         <div class="col-sm-8">
                           <div class="form-group">
                             <label for="dtp_input1" class="control-label">Schedule</label>
-                            <div class="input-group date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                            <div class="input-group date form_datetime" data-date="{{ \Carbon\Carbon::now()->toDateTimeString() }}" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
                                 <input class="form-control" size="16" type="text" value="" readonly>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
