@@ -9,11 +9,7 @@ class Game extends Model
     //
     protected $guarded = [];
 
-    public function matches()
-    {
-    	return $this->hasMany(Matches::class);
-    }
-
+    
     public function event()
     {
     	return $this->belongsTo(Event::class);
@@ -23,6 +19,12 @@ class Game extends Model
     {
          return $this->belongsToMany(Manager::class);
     }
+
+    public function matches()
+    {
+        return $this->hasMany(Match::class);
+    }
+
 
 
 }

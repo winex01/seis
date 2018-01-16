@@ -21,11 +21,17 @@
                     </ol>
                 </div>
 
+                @include('flash::message')
+
                 <a class="btn btn-default" data-toggle="modal" href='#modal-match'>
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                     Match Schedule
                 </a>
 
+
+
+
+                {{-- table here --}}
 
             </div>
             <!-- /.col-lg-12 -->
@@ -49,19 +55,19 @@
             <div class="modal-body">
                 
                 <div class="container-fluid">
-                    <form class="form-horizontal" action="">
+                    <form class="form-horizontal" method="POST" action="{{ route('match.store') }}">
 
                         {{ csrf_field() }}
 
+                        <input type="hidden" name="game_id" value="{{ $game->id }}">
 
                         <div class="col-sm-5">
                           <div class="form-group">
-                            <label for="sel1">Team 1:</label>
-                            <select class="form-control" id="sel1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
+                            <label for="team1_id">Team 1:</label>
+                            <select class="form-control" id="team1_id" name="team1_id">
+                              @foreach($teams as $team)
+                                <option value="{{ $team->id }}">{{ $team->description }}</option>
+                              @endforeach
                             </select>
                           </div>
                         </div>
@@ -70,18 +76,15 @@
                         
                         <div class="col-sm-5">
                            <div class="form-group">
-                            <label for="sel1">Team 2:</label>
-                            <select class="form-control" id="sel1">
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
+                            <label for="team2_id">Team 2:</label>
+                            <select class="form-control" id="team2_id" name="team2_id">
+                              @foreach($teams as $team)
+                                <option value="{{ $team->id }}">{{ $team->description }}</option>
+                              @endforeach
                             </select>
                           </div>
                         </div>
 
-
-                        
                         <div class="col-sm-2"></div>
                         <div class="col-sm-8">
                           <div class="form-group">
@@ -91,27 +94,26 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                             </div>
-                          <input type="hidden" id="dtp_input1" value="" /><br/>
+                          <input type="hidden" id="dtp_input1" name="schedule" value="" /><br/>
                          </div>
                         </div>
                         <div class="col-sm-2"></div>
-                        
+                         
 
-                        
-
-
-
-
-
-                    </form>
                 </div>
 
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save
+                  <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                </button>
+                    </form>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- /#wrapper -->

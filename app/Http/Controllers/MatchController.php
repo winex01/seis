@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Game;
+use App\Match;
 
 class MatchController extends Controller
 {
@@ -35,6 +37,26 @@ class MatchController extends Controller
     public function store(Request $request)
     {
         //
+        // dd($request->all());
+
+        $game_id = $request->game_id;
+
+        $game = Game::findOrFail($game_id);
+
+        // new match
+        $match = new Match([
+            'team1_id' => $request->team1_id,
+            'team2_id' => $request->team2_id,
+            'schedule' => $request->schedule,
+        ]);
+
+
+        $game->matches()->save($match);
+
+        flash('Added new match & schedule!')->success();
+
+        return back();
+
     }
 
     /**

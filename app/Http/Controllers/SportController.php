@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Manager;
+use App\Team;
 
 class SportController extends Controller
 {
@@ -61,7 +62,9 @@ class SportController extends Controller
             abort(404);
         }
 
-        return view('manager.sport', compact('game'));
+        $teams = Team::all();
+
+        return view('manager.sport', compact('game', 'teams'));
 
     }
 
