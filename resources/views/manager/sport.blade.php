@@ -23,15 +23,30 @@
 
                 @include('flash::message')
 
-                <a class="btn btn-default" data-toggle="modal" href='#modal-match'>
-                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                    Match Schedule
-                </a>
+                <div class="form-group">
+                  <a class="btn btn-default" data-toggle="modal" href='#modal-match'>
+                      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                      Match Schedule
+                  </a>
+                </div>
 
 
+                <table id="match-table" class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Team 1</th>
+                      <th>Team 2</th>
+                      <th>Schedule</th>
+                      <th>Winner</th>
+                      <th><center>Action</center></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
 
-
-                {{-- table here --}}
+                
 
             </div>
             <!-- /.col-lg-12 -->
@@ -164,6 +179,27 @@
     maxView: 1,
     forceParse: 0
     });
+</script>
+
+<script type="text/javascript">
+  $(function() {
+        $('#match-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('match.all', $game->id) }}',
+            columns: [
+                {data: 'id'},
+                {data: 'team1_id'},
+                {data: 'team2_id'},
+                {data: 'schedule'},
+                {data: 'winner_team_id'},
+                {data: 'action'},
+            ]
+        });
+    });
+
+
 </script> 
 
 @endpush
+

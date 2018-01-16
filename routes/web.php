@@ -52,6 +52,7 @@ Route::resource('team', 'TeamController');
 // Route::resource('user', 'UserController');
 
 // matches
+Route::get('manager/match/all/{game}', 'MatchController@all')->name('match.all');
 Route::resource('manager/match', 'MatchController');
 
 // sports manager
