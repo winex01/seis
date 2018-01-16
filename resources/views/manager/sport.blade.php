@@ -54,17 +54,50 @@
                         {{ csrf_field() }}
 
 
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="sel1">Team 1:</label>
+                            <select class="form-control" id="sel1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-2"></div>
+                        
+                        <div class="col-sm-5">
+                           <div class="form-group">
+                            <label for="sel1">Team 2:</label>
+                            <select class="form-control" id="sel1">
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                            </select>
+                          </div>
+                        </div>
+
+
+                        
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                          <div class="form-group">
+                            <label for="dtp_input1" class="control-label">Schedule</label>
+                            <div class="input-group date form_datetime" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                <input class="form-control" size="16" type="text" value="" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                          <input type="hidden" id="dtp_input1" value="" /><br/>
+                         </div>
+                        </div>
+                        <div class="col-sm-2"></div>
                         
 
-                        <div class="form-group">
-                          <label for="dtp_input1" class="col-md-2 control-label">Schedule</label>
-                          <div class="input-group date form_datetime col-md-6" data-date="1979-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                              <input class="form-control" size="16" type="text" value="" readonly>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                              <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
-                          </div>
-                        <input type="hidden" id="dtp_input1" value="" /><br/>
-                       </div>
+                        
 
 
 
