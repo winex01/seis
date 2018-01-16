@@ -112,7 +112,8 @@ class MatchController extends Controller
         return DataTables::of($matches)->addColumn('action', function ($match) {
                 return '
                     <div align="center">
-                            <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
+                        <button class="btn btn-xs btn-success"><i class="fa fa-check"></i> Select Winner</button>
+                        <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 ';
             })
