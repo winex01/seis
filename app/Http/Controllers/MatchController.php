@@ -39,7 +39,11 @@ class MatchController extends Controller
     public function store(Request $request)
     {
         //
-        // dd($request->all());
+        $request->validate([
+            'schedule' => 'required',
+        ]);
+
+
 
         $game_id = $request->game_id;
 

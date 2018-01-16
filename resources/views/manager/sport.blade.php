@@ -21,7 +21,19 @@
                     </ol>
                 </div>
 
+                {{-- flash --}}
                 @include('flash::message')
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                {{-- end flash --}}
+
 
                 <div class="form-group">
                   <a class="btn btn-default" data-toggle="modal" href='#modal-match'>
