@@ -32,6 +32,9 @@
                         </ul>
                     </div>
                 @endif
+                @include('layouts.validation-errors')
+                {{-- custom --}}
+                @include('layouts.flash-success')
                 {{-- end flash --}}
 
 
@@ -143,6 +146,44 @@
 
 
 
+{{-- modal set result --}}
+<div class="modal fade" id="modal-set-result">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Match Result</h4>
+            </div>
+            <div class="modal-body">
+            
+            <form>
+                
+                <input type="hidden" name="match_id" id="match_id">                
+
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                          <label for="win">Select winner:</label>
+                          <select class="form-control" id="win">
+                          </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="submit-save-winner" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <!-- /#wrapper -->
 @endsection
 
@@ -210,6 +251,41 @@
         });
     });
 
+
+  // set result
+  function setResult(row1, row2, match) {
+    // console.log(match);
+    $('#match_id').val(match.id);
+
+    $('#win').html('');
+    $('#win').append('<option value="'+row1.id+'">'+row1.description+'</option>');
+    $('#win').append('<option value="'+row2.id+'">'+row2.description+'</option>');
+
+    if (match.winner_team_id != null) {
+        $('#win').val(match.winner_team_id);
+    }
+
+    $('#modal-set-result').modal();
+  }
+  // 
+  $('#submit-save-winner').click(function(event) {
+      /* Act on the event */
+      $.ajax({
+            url: '{{ route('match.setWinner') }}',
+            type: 'POST',
+            data: {
+                match_id: $('#match_id').val(),
+                team_winner_id: $('#win').val()
+            },
+            success: function (data) {
+                console.log(data);
+
+                $('#modal-set-result').modal('hide');
+                dataTableRefresh('#match-table', 6);
+                printSuccessMsg(data.title, 'Updated');
+            }
+        });
+  });
 
 </script> 
 

@@ -25,4 +25,9 @@ class Match extends Model
     	return $this->hasMany(Team::class, 'id', 'team2_id');
     }
 
+    public function winner()
+    {
+        return $this->hasMany(Team::class, 'id', 'winner_team_id');
+    }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Game;
 use App\Match;
+use App\Team;
 use DataTables;
 use Carbon\Carbon;
 
@@ -115,9 +116,11 @@ class MatchController extends Controller
 
         $matches = $game->matches;
         return DataTables::of($matches)->addColumn('action', function ($match) {
+                $team1 = Team::findOrFail($match->team1_id);    
+                $team2 = Team::findOrFail($match->team2_id);    
                 return '
                     <div align="center">
-                        <button class="btn btn-xs btn-success"><i class="fa fa-check"></i> Select Winner</button>
+                        <button onclick="setResult('.htmlentities($team1).', '.htmlentities($team2).', '.htmlentities($match).')" class="btn btn-xs btn-success"><i class="fa fa-check"></i> Set Result</button>
                         <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 ';
@@ -130,11 +133,24 @@ class MatchController extends Controller
             ->editColumn('team2_id', function ($match) {
                 return $match->team2->pluck('description')->first();
             })
+            ->editColumn('winner_team_id', function ($match) {
+                return $match->winner->pluck('description')->first();
+            })
             ->editColumn('schedule', function ($match) {
                 return Carbon::parse($match->schedule)->toDayDateTimeString();
             })
             ->make(true);
 
         return response()->json(['title' => $matches]);
+    }
+
+    public function setWinner(Request $request)
+    {
+        
+        $match = Match::findOrFail($request->match_id);
+        $match->winner_team_id = $request->team_winner_id;
+        $match->save();
+
+        return response()->json(['title' => 'Result']);
     }
 }

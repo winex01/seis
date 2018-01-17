@@ -52,6 +52,7 @@ Route::resource('team', 'TeamController');
 // Route::resource('user', 'UserController');
 
 // matches
+Route::post('manager/match/winner/', 'MatchController@setWinner')->name('match.setWinner');
 Route::get('manager/match/all/{game}', 'MatchController@all')->name('match.all');
 Route::resource('manager/match', 'MatchController');
 
