@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DataTables;
 use App\GameType;
+use App\Game;
 
 class GameTypeController extends Controller
 {
@@ -114,6 +115,7 @@ class GameTypeController extends Controller
         //
         $deleted = $gametype->description;
 
+        Game::where('game_type_id', $gametype->id)->delete();
         GameType::destroy($gametype->id);
 
         return response()->json(['title' => $deleted]);
