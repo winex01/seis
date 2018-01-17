@@ -97,7 +97,7 @@ class GameTypeController extends Controller
     {
 
         $gametype->description = ucwords($request->description);
-
+        $gametype->medal_points = $request->medal_points;
         $gametype->save();
 
         return response()->json(['title' => 'Game Type']);
@@ -122,11 +122,11 @@ class GameTypeController extends Controller
     public function all()
     {
         
-        $gametypes = GameType::select(['id', 'description', 'created_at']);
+        $gametypes = GameType::select(['id', 'description', 'medal_points', 'created_at']);
         return DataTables::of($gametypes)->addColumn('action', function ($gametype) {
                 return '
                     <div align="center">
-                            <button onclick="editGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
+                            <button onclick="editGametype('.htmlentities($gametype).')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i> Edit</button>
                             <button onclick="deleteGametype('.$gametype->id.', \'' .$gametype->description. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Delete</button>
                     </div>
                 ';

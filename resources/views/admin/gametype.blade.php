@@ -44,6 +44,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Description</th>
+                      <th>Medal Points</th>
                       <th>Created</th>
                       <th><center>Action</center></th>
                     </tr>
@@ -127,6 +128,19 @@
                       <input type="text" class="form-control" id="edit-description" name="edit-description" placeholder="ex. Basketball, Chess" autofocus="">
                     </div>
                   </div>
+
+                  <div class="col-sm-2">
+                      <label for="medal-points">Medal Points:</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <select class="form-control" id="medal-points" name="medal_points">
+                        @for($i = 1; $i <= 10; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                      </select>
+                    </div>
+                  </div>
                 
                   <div class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-10">
@@ -160,6 +174,7 @@
             columns: [
                 {data: 'id'},
                 {data: 'description'},
+                {data: 'medal_points'},
                 {data: 'created_at'},
                 {data: 'action'},
             ]
@@ -182,7 +197,7 @@
             success: function (data) {
                 
                 $('#modal-confirm-delete').modal('hide');
-                dataTableRefresh('#gametype-table');
+                dataTableRefresh('#gametype-table', 5);
                 printSuccessMsg(data.title, 'Deleted');
 
             },
@@ -195,10 +210,11 @@
   });
 
 
-  function editGametype(gtid, gtdesc){
-    id = gtid;
-    $('#edit-description').val(gtdesc)
+  function editGametype(row){
+    id = row.id;
+    $('#edit-description').val(row.description)
     $('#edit-gametype').modal();
+    $('#medal-points').val(row.medal_points);
   }
 
   $('#update-gametype-form').submit(function(event) {
@@ -206,16 +222,19 @@
       event.preventDefault();
 
       var description = $('#edit-description').val();
+      var medal_points = $('#medal-points').val();
+
         $.ajax({
             type: "PATCH",
             url: '{{ url('gametype').'/' }}'+id,
             data: {
-                description: description
+                description: description,
+                medal_points: medal_points
             },
             success: function (data) {
                 console.log(data);
                 
-                dataTableRefresh('#gametype-table');
+                dataTableRefresh('#gametype-table', 5);
                 printSuccessMsg(data.title, 'Updated');
                 $('#edit-gametype').modal('hide');
 
