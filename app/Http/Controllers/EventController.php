@@ -111,6 +111,10 @@ class EventController extends Controller
                     </div>
                 ';
             })
+            ->addColumn('medal_points', function ($game){
+                $q = GameType::findOrFail($game->game_type_id);
+                return $q->medal_points;
+            })
             ->addColumn('manager', function ($game){
                 $fn = $game->manager->pluck('firstname')->first();
                 $ln = $game->manager->pluck('lastname')->first();

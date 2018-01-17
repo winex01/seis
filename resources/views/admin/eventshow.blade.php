@@ -50,6 +50,7 @@
                     <tr>
                       <th>ID</th>
                       <th>Sport</th>
+                      <th>Medal Points</th>
                       <th>Manager</th>
                       <th>Created</th>
                       <th><center>Action</center></th>
@@ -158,6 +159,7 @@
                 columns: [
                     {data: 'id'},
                     {data: 'game'},
+                    {data: 'medal_points'},
                     {data: 'manager'},
                     {data: 'created_at'},
                     {data: 'action'},
