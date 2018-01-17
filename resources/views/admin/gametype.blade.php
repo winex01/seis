@@ -78,6 +78,19 @@
                       <input type="text" class="form-control" id="description" name="description" placeholder="ex. Basketball, Chess">
                     </div>
                   </div>
+
+                  <div class="col-sm-2">
+                      <label for="sel1">Medal Points:</label>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <select class="form-control" id="sel1" name="medal_points">
+                        @for($i = 1; $i <= 10; $i++)
+                          <option value="{{ $i }}">{{ $i }}</option>
+                        @endfor
+                      </select>
+                    </div>
+                  </div>
                 
                   <div class="form-group"> 
                     <div class="col-sm-offset-2 col-sm-10">

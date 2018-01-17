@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGamesColumn extends Migration
+class AddGameTypesColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateGamesColumn extends Migration
     public function up()
     {
         //
-        Schema::table('games', function (Blueprint $table) {
+        Schema::table('game_types', function (Blueprint $table) {
             $table->integer('medal_points')->default(1);
         });
     }
@@ -27,7 +27,7 @@ class CreateGamesColumn extends Migration
     public function down()
     {
         //
-        Schema::table('games', function (Blueprint $table) {
+        Schema::table('game_types', function (Blueprint $table) {
             $table->dropColumn('medal_points');
         });
     }

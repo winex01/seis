@@ -51,11 +51,13 @@ class GameTypeController extends Controller
         //
         $request->validate([
             'description' => 'required',
+            'medal_points' => 'required',
         ]);
 
         //validation success
         $event = GameType::create([
-            'description' => ucwords($request->description)
+            'description' => ucwords($request->description),
+            'medal_points' => ucwords($request->medal_points)
         ]);
 
         flash('New game added successfully!')->success();
