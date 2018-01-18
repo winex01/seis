@@ -184,6 +184,9 @@
 </div>
 
 
+
+@include('layouts.confirm-delete')
+
 <!-- /#wrapper -->
 @endsection
 
@@ -285,6 +288,33 @@
                 printSuccessMsg(data.title, 'Updated');
             }
         });
+  });
+
+  var id;
+  function removeMatch(row) {
+      $('#modal-confirm-delete .modal-body p').html('Are you sure you want to delete this <strong>match</strong>?');
+      $('#modal-confirm-delete').modal();
+
+      id = row.id;
+  }
+  $('#btn-confirm-delete').click(function(event) {
+        /* Act on the event */
+        $.ajax({
+            type: "DELETE",
+            url: '{{ url('manager/match').'/' }}'+id,
+            success: function (data) {
+                
+                $('#modal-confirm-delete').modal('hide');
+                dataTableRefresh('#match-table', 6);
+                printSuccessMsg(data.title, 'Deleted');
+
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+
+        });
+
   });
 
 </script> 

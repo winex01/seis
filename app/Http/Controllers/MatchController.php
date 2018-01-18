@@ -106,9 +106,13 @@ class MatchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Match $match)
     {
         //
+        //
+        Match::destroy($match->id);
+
+        return response()->json(['title' => 'Match']);
     }
 
     public function all(Game $game)
@@ -121,7 +125,7 @@ class MatchController extends Controller
                 return '
                     <div align="center">
                         <button onclick="setResult('.htmlentities($team1).', '.htmlentities($team2).', '.htmlentities($match).')" class="btn btn-xs btn-success"><i class="fa fa-check"></i> Set Result</button>
-                        <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
+                        <button onclick="removeMatch('.htmlentities($match).')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
                 ';
             })
