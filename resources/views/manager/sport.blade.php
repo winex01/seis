@@ -161,8 +161,6 @@
             </div>
             <div class="modal-body">
             
-            <form>
-                
                 <input type="hidden" name="match_id" id="match_id">                
 
                 <div class="row">
@@ -183,7 +181,6 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" id="submit-save-winner" class="btn btn-primary">Save changes</button>
             </div>
-            </form>
         </div>
     </div>
 </div>
@@ -199,8 +196,8 @@
                 <h4 class="modal-title">Assign medals to overall winner</h4>
             </div>
             <div class="modal-body">
-                <form>
-                    <input type="hidden" name="match_id" id="match_id">                
+
+                <form method="POST" action="">
 
                     <div class="row">
                         <div class="col-sm-3"></div>
