@@ -43,6 +43,11 @@
                       <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                       Match Schedule
                   </a>
+
+                  <a class="btn btn-primary btn-outline" data-toggle="modal" href='#modal-overall-winner'>
+                      <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                      Overall Winner
+                  </a>
                 </div>
 
 
@@ -183,6 +188,76 @@
     </div>
 </div>
 
+
+
+
+<div class="modal fade" id="modal-overall-winner">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Assign medals to overall winner</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <input type="hidden" name="match_id" id="match_id">                
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="gold-medal" class="text-danger">Gold Medal:</label>
+                              <select class="form-control" id="gold-medal">
+                                <option>Select Team</option>
+                                @foreach($teams as $team)
+                                    <option>{{ $team->description }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="silver-medal" class="text-primary">Silver Medal:</label>
+                              <select class="form-control" id="silver-medal">
+                                <option>Select Team</option>
+                                @foreach($teams as $team)
+                                    <option>{{ $team->description }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="bronze-medal" class="text-warning">Bronze Medal:</label>
+                              <select class="form-control" id="bronze-medal">
+                                <option>Select Team</option>
+                                @foreach($teams as $team)
+                                    <option>{{ $team->description }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @include('layouts.confirm-delete')
