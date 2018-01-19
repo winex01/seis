@@ -197,17 +197,21 @@
             </div>
             <div class="modal-body">
 
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('assign.medals') }}">
+
+                    {{ csrf_field() }}
+
+                    <input type="hidden" name="game_id" value="{{ $game->id }}">
 
                     <div class="row">
                         <div class="col-sm-3"></div>
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="gold-medal" class="text-danger">Gold Medal:</label>
-                              <select class="form-control" id="gold-medal">
-                                <option>Select Team</option>
+                              <select class="form-control" id="gold-medal" name="gold_team_id">
+                                <option value="">Select Team</option>
                                 @foreach($teams as $team)
-                                    <option {{ $team->id }} {{ ($team->id == $game->gold_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
+                                    <option value="{{ $team->id }}" {{ ($team->id == $game->gold_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -220,10 +224,10 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="silver-medal" class="text-primary">Silver Medal:</label>
-                              <select class="form-control" id="silver-medal">
-                                <option>Select Team</option>
+                              <select class="form-control" id="silver-medal" name="silver_team_id">
+                                <option value="">Select Team</option>
                                 @foreach($teams as $team)
-                                    <option {{ $team->id }} {{ ($team->id == $game->silver_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
+                                    <option value="{{ $team->id }}" {{ ($team->id == $game->silver_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -236,10 +240,10 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="bronze-medal" class="text-warning">Bronze Medal:</label>
-                              <select class="form-control" id="bronze-medal">
-                                <option>Select Team</option>
+                              <select class="form-control" id="bronze-medal" name="bronze_team_id">
+                                <option value="">Select Team</option>
                                 @foreach($teams as $team)
-                                    <option {{ $team->id }} {{ ($team->id == $game->bronze_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
+                                    <option value="{{ $team->id }}" {{ ($team->id == $game->bronze_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -249,7 +253,7 @@
             </div>
             <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </form>
             </div>
         </div>

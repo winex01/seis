@@ -56,6 +56,8 @@ Route::post('manager/match/winner/', 'MatchController@setWinner')->name('match.s
 Route::get('manager/match/all/{game}', 'MatchController@all')->name('match.all');
 Route::resource('manager/match', 'MatchController');
 
+Route::post('manager/assignmedals/', 'AssignMedalsController')->name('assign.medals');
+
 // sports manager
 Route::get('manager/all', 'managerController@all')->name('manager.all');
 Route::resource('manager', 'managerController');
