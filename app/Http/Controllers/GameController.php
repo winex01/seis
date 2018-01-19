@@ -97,21 +97,32 @@ class GameController extends Controller
     {
         // dd($request->all());
         $game = Game::find($request->game_id);
-        $manager = Manager::find($request->manager_id);
+        
+        if ($request->manager_id == null) {
+            $manager = $game->manager->first();
+            $game->manager()->detach($manager->id);
 
-        $hasManager = $game->manager()->exists();
+            $fn = $manager->firstname;
+            $ln = $manager->lastname;
 
-        // if naa has manager update lng
-        if($hasManager) {
-             $game->manager()->detach($game->manager->pluck('id')->first());
+            flash($fn.' '.$ln.' is removed as ' .$game->game. ' sport\'s manager.')->success();
+        }else {
+            $manager = Manager::find($request->manager_id);
+            $hasManager = $game->manager()->exists();
+
+            // if naa has manager update lng
+            if($hasManager) {
+                 $game->manager()->detach($game->manager->pluck('id')->first());
+            }
+            $game->manager()->save($manager);
+            
+            $fn = $manager->firstname;
+            $ln = $manager->lastname;
+        
+            flash($fn.' '.$ln.' is assigned as ' .$game->game. ' sport\'s manager.')->success();
         }
 
-        $game->manager()->save($manager);
-
-        $fn = $manager->firstname;
-        $ln = $manager->lastname;
-
-        flash($fn.' '.$ln.' is assigned as ' .$game->game. ' sport\'s manager.')->success();
+        
 
         return  back();
     }

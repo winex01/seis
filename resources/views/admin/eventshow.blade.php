@@ -118,7 +118,8 @@
                     <label class="control-label col-sm-2">Manager:</label>
                     <div class="col-sm-10">
                           <label for="sel1">Select list:</label>
-                          <select class="form-control" name="manager_id">
+                          <select class="form-control" name="manager_id" id="manager_id">
+                            <option value="">None</option>
                             @foreach($sportManagers as $sportManager)
                                 <option value="{{ $sportManager->id }}">{{ $sportManager->fullName }}</option>
                             @endforeach
@@ -241,10 +242,11 @@
       });
 
       // assign mngr
-      function assignMngr(data){
-        // console.log(data);
+      function assignMngr(data, manager_id){
+        // console.log(manager_id);
 
         $('#game_id').val(data.id);
+        $('#manager_id').val(manager_id);
 
         $('#modal-assign-mngr').modal();
       }
