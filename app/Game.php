@@ -25,6 +25,21 @@ class Game extends Model
         return $this->hasMany(Match::class);
     }
 
+    public function goldWinner()
+    {
+        return $this->hasOne(Team::class, 'id', 'gold_team_id');
+    }
+
+    public function silverWinner()
+    {
+        return $this->hasOne(Team::class, 'id', 'silver_team_id');
+    }
+
+    public function bronzeWinner()
+    {
+        return $this->hasOne(Team::class, 'id', 'bronze_team_id');
+    }
+
 
 
 }

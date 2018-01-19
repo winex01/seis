@@ -193,7 +193,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Assign medals to overall winner</h4>
+                <h4 class="modal-title">Overall Winner</h4>
             </div>
             <div class="modal-body">
 
@@ -207,7 +207,7 @@
                               <select class="form-control" id="gold-medal">
                                 <option>Select Team</option>
                                 @foreach($teams as $team)
-                                    <option>{{ $team->description }}</option>
+                                    <option {{ $team->id }} {{ ($team->id == $game->gold_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -223,7 +223,7 @@
                               <select class="form-control" id="silver-medal">
                                 <option>Select Team</option>
                                 @foreach($teams as $team)
-                                    <option>{{ $team->description }}</option>
+                                    <option {{ $team->id }} {{ ($team->id == $game->silver_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -239,7 +239,7 @@
                               <select class="form-control" id="bronze-medal">
                                 <option>Select Team</option>
                                 @foreach($teams as $team)
-                                    <option>{{ $team->description }}</option>
+                                    <option {{ $team->id }} {{ ($team->id == $game->bronze_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
                               </select>
                             </div>

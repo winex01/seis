@@ -18,6 +18,10 @@ class AddGamesColumn extends Migration
             $table->unsignedInteger('gold_team_id')->nullable();
             $table->unsignedInteger('silver_team_id')->nullable();
             $table->unsignedInteger('bronze_team_id')->nullable();
+
+            $table->foreign('gold_team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('silver_team_id')->references('id')->on('teams')->onDelete('cascade');
+            $table->foreign('bronze_team_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 
