@@ -63,7 +63,9 @@ Route::get('manager/all', 'managerController@all')->name('manager.all');
 Route::resource('manager', 'managerController');
 
 //game
+Route::get('game/matches/{game}', 'GameController@matches')->name('game.matches');
 Route::post('game/assignManager', 'GameController@assignManager')->name('game.assignManager');
+
 Route::resource('manager/sport', 'sportController');
 
 
