@@ -12,9 +12,10 @@
 */
 
 // guest
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'WelcomeController@all')->name('welcome.all');
+Route::get('/year/{event}', 'WelcomeController@sports')->name('welcome.sports');
+Route::get('/year/sports/{event}', 'WelcomeController@yearSports')->name('welcome.yearSports');
+Route::get('/year/scheduleAndMatches/{game}', 'WelcomeController@scheduleAndMatches')->name('welcome.scheduleAndMatches');
 
 // auth
 Auth::routes();

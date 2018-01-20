@@ -13,13 +13,13 @@
                         <!-- /input-group -->
                     </li>
 
-                        <li>
-                            <a href=#"><i class="fa fa-circle-thin"></i> Test</a>
-                        </li>
 
+                    @foreach($events as $event)
                         <li>
-                            <a href=#"><i class="fa fa-circle-thin"></i> Test</a>
+                            <a href="{{ route('welcome.sports', [$event->id]) }}"><i class="fa fa-circle-thin"></i> {{ $event->year }}</a>
                         </li>
+                    @endforeach
+                        
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->

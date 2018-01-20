@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Session;
 use App\Manager;
+use App\Event;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -45,12 +46,11 @@ class AppServiceProvider extends ServiceProvider
         }); 
 
 
-        //
-        // $manager_id = Session::all('manager_id');
-        // dd($manager_id);
-        // $manager = Manager::findOrFail($manager_id);
 
-        // dd($manager);
+        // user / front / welcome
+        $events = Event::all()->sortByDesc('year');
+
+        view()->share('events', $events);
 
         
     }
