@@ -53,41 +53,6 @@
 
 
 
-
-
-<div class="modal fade" id="modal-score">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{ $event->year }} Score Board</h4>
-            </div>
-            <div class="modal-body">
-                
-
-                <table id="score-table" class="table table-striped table-condensed">
-                    <thead>
-                    <tr>
-                      <th class="text-success">Team</th>
-                      <th class="text-danger">Gold Medal</th>
-                      <th class="text-primary">Silver Medal</th>
-                      <th class="text-warning">Bronze Medal</th>
-                      <th class="text-info">Total</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="modal fade" id="modal-matches">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -120,6 +85,43 @@
 </div>
 
 
+
+
+
+
+<div class="modal fade" id="modal-score">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">{{ $event->year }} Score Board</h4>
+            </div>
+            <div class="modal-body">
+                
+
+                <table id="score-table" class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th class="text-success">Team</th>
+                      <th class="text-danger">Gold Medal</th>
+                      <th class="text-primary">Silver Medal</th>
+                      <th class="text-warning">Bronze Medal</th>
+                      <th class="text-info">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection
 
@@ -173,7 +175,30 @@ function sportsMatches(row) {
 
 $('#btn-score-board').click(function(event) {
     /* Act on the event */
-    
+    $('#score-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ route('welcome.scoreboard', $event->id) }}', 
+            // columnDefs: [
+            //     { "width": "250", "targets": 4 }
+            // ],
+            columns: [
+                {data: 'id'},
+                {data: 'description'}, //team
+                {data: 'gold'},
+                {data: 'silver'},
+                {data: 'bronze'},
+                {data: 'total'},
+            ]
+    });
+
+    // $.ajax({
+    {{-- //     url: '{{ route('welcome.scoreboard', $event->id) }}', --}}
+    //     type: 'GET',
+    //     success: function (data) {
+    //         console.log(data);
+    //     }
+    // });
 
     
     $('#modal-score').modal();

@@ -84,4 +84,54 @@ class WelcomeController extends Controller
         return response()->json(['title' => $matches]);
     }
 
+    public function scoreBoard(Event $event)
+    {
+        $games = $event->games;
+
+        $team_ids = [];
+        foreach ($games as $game) {
+            $team1_ids = $game->matches->pluck('team1_id');
+            $team2_ids = $game->matches->pluck('team2_id');
+
+            foreach ($team1_ids as $team1) {
+                if (!in_array($team1, $team_ids)) {
+                    $team_ids[] = $team1;
+                }
+            }
+
+            foreach ($team2_ids as $team2) {
+                if (!in_array($team2, $team_ids)) {
+                    $team_ids[] = $team2;
+                }
+            }
+
+        }//end foreach
+
+        $teams = Team::select('id', 'description')->whereIn('id', $team_ids)->get();
+
+        return DataTables::of($teams)
+            ->addColumn('gold', function ($team) {
+                return '1';
+            })
+            ->addColumn('silver', function ($team) {
+                return '1';
+            })
+            ->addColumn('bronze', function ($team) {
+                return '1';
+            })
+            ->addColumn('total', function ($team) {
+                return '1';
+            })
+            ->make(true);
+
+        //test
+        // return response()->json(['title' => $teams]);
+    
+    }
+
+
+
+
+
+
 }
