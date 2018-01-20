@@ -20,9 +20,9 @@
                 </div>
 
                 <div class="form-group">
-                    <a class="btn btn-success btn-outline" data-toggle="modal" href='#modal-score'>
+                    <button id="btn-score-board" class="btn btn-success btn-outline">
                         <span class="glyphicon glyphicon-calendar"></span>
-                    Score Board</a>
+                    Score Board</button>
                 </div>
 
                 <table id="games-table" class="table table-striped table-condensed">
@@ -60,14 +60,29 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">{{ $event->year }} Score Board</h4>
             </div>
             <div class="modal-body">
                 
+
+                <table id="score-table" class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                      <th class="text-success">Team</th>
+                      <th class="text-danger">Gold Medal</th>
+                      <th class="text-primary">Silver Medal</th>
+                      <th class="text-warning">Bronze Medal</th>
+                      <th class="text-info">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
@@ -154,6 +169,16 @@ function sportsMatches(row) {
 
     $('#modal-matches').modal();
 }
+
+
+$('#btn-score-board').click(function(event) {
+    /* Act on the event */
+    
+
+    
+    $('#modal-score').modal();
+
+});
 
 </script> 
 
