@@ -143,6 +143,41 @@
 </div>
 
 
+
+<div class="modal fade" id="modal-matches">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="matches-title">matches</h4>
+            </div>
+            <div class="modal-body">
+                
+                <table id="match-table" class="table table-striped table-condensed">
+                    <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Team 1</th>
+                      <th>Team 2</th>
+                      <th>Schedule</th>
+                      <th>Winner</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 @include('layouts.confirm-delete')
 
 @endsection
@@ -250,6 +285,30 @@
 
         $('#modal-assign-mngr').modal();
       }
+
+
+function sportsMatches(row) {
+    console.log(row);
+    $('#matches-title').text(row.game + ' schedule and matches');
+
+    var table = $('#match-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    bDestroy: true,
+                    ajax: '{{ url('/year/scheduleAndMatches').'/' }}' + row.id,
+                    columns: [
+                        {data: 'id'},
+                        {data: 'team1_id'},
+                        {data: 'team2_id'},
+                        {data: 'schedule'},
+                        {data: 'winner_team_id'},
+                    ]
+                });
+
+    $('#modal-matches').modal();
+}
+
+
 
     </script>
 @endpush    

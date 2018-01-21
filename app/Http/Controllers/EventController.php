@@ -106,7 +106,7 @@ class EventController extends Controller
                 $manager_id = $game->manager()->pluck('id')->first();
                 return '
                     <div align="center">
-                            <a href="#" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</a>
+                            <button onclick="sportsMatches('.htmlentities($game).')" class="btn btn-xs btn-info"><i class="fa fa-users"></i> Matches</button>
                              <button onclick="assignMngr('.htmlentities($game).', \''.$manager_id.'\')" class="btn btn-xs btn-success"><i class="fa fa-user"></i> Assign Mngr.</button>
                             <button onclick="deleteEventGame('.$game->id.', \'' .$game->game. '\')" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> Remove</button>
                     </div>
