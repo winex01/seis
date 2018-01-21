@@ -178,10 +178,8 @@ $('#btn-score-board').click(function(event) {
     $('#score-table').DataTable({
             processing: true,
             serverSide: true,
+            bDestroy: true,
             ajax: '{{ route('welcome.scoreboard', $event->id) }}', 
-            // columnDefs: [
-            //     { "width": "250", "targets": 4 }
-            // ],
             columns: [
                 {data: 'id'},
                 {data: 'description'}, //team

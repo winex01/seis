@@ -111,16 +111,65 @@ class WelcomeController extends Controller
 
         return DataTables::of($teams)
             ->addColumn('gold', function ($team) {
-                return '1';
+                $games = Game::select('game_type_id')->where('gold_team_id', $team->id)->get();
+                $total = 0;
+                // loop game wins
+                foreach ($games as $game) {
+                    $gameType = GameType::findOrFail($game->game_type_id);
+                    $total += $gameType->medal_points;
+                }
+
+                return $total;
             })
             ->addColumn('silver', function ($team) {
-                return '1';
+                $games = Game::select('game_type_id')->where('silver_team_id', $team->id)->get();
+                $total = 0;
+                // loop game wins
+                foreach ($games as $game) {
+                    $gameType = GameType::findOrFail($game->game_type_id);
+                    $total += $gameType->medal_points;
+                }
+
+                return $total;
             })
             ->addColumn('bronze', function ($team) {
-                return '1';
+                $games = Game::select('game_type_id')->where('bronze_team_id', $team->id)->get();
+                $total = 0;
+                // loop game wins
+                foreach ($games as $game) {
+                    $gameType = GameType::findOrFail($game->game_type_id);
+                    $total += $gameType->medal_points;
+                }
+
+                return $total;
             })
             ->addColumn('total', function ($team) {
-                return '1';
+                
+                $total = 0;
+                $games = Game::select('game_type_id')->where('gold_team_id', $team->id)->get();
+                // loop game wins
+                foreach ($games as $game) {
+                    $gameType = GameType::findOrFail($game->game_type_id);
+                    $total += $gameType->medal_points;
+                }
+
+                $games = Game::select('game_type_id')->where('silver_team_id', $team->id)->get();
+                // loop game wins
+                foreach ($games as $game) {
+                    $gameType = GameType::findOrFail($game->game_type_id);
+                    $total += $gameType->medal_points;
+                }
+
+                $games = Game::select('game_type_id')->where('bronze_team_id', $team->id)->get();
+                // loop game wins
+                foreach ($games as $game) {
+                    $gameType = GameType::findOrFail($game->game_type_id);
+                    $total += $gameType->medal_points;
+                }
+
+
+                return $total;
+
             })
             ->make(true);
 
