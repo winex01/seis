@@ -24,7 +24,9 @@ class WelcomeController extends Controller
 
     public function sports(Event $event)
     {
-    	return view('sports', compact('event'));
+        $teams = Team::all();
+
+    	return view('sports', compact('event', 'teams'));
     }
 
     public function yearSports(Event $event) 
@@ -35,6 +37,7 @@ class WelcomeController extends Controller
                 return '
                     <div align="center">
                         <button onclick="sportsMatches('.htmlentities($game).')" class="btn btn-xs btn-info"><i class="fa fa-eye" aria-hidden="true"></i> Matches</button>
+                        <button onclick="overallSportsWinner('.htmlentities($game).')" class="btn btn-xs btn-success"><i class="fa fa-trophy" aria-hidden="true"></i> Overall Result</button>
                     </div>
                 ';
             })
@@ -176,6 +179,23 @@ class WelcomeController extends Controller
         //test
         // return response()->json(['title' => $teams]);
     
+    }
+
+
+    public function overallSportsWinner(Game $game)
+    {
+
+        $gold = $game->goldWinner;
+        $silver = $game->silverWinner;
+        $bronze = $game->bronzeWinner;
+
+
+        return response()->json([
+            'result' => $game->game,
+            'gold' => $gold,
+            'silver' => $silver,
+            'bronze' => $bronze
+        ]);
     }
 
 

@@ -17,6 +17,7 @@ Route::get('/year/{event}', 'WelcomeController@sports')->name('welcome.sports');
 Route::get('/year/sports/{event}', 'WelcomeController@yearSports')->name('welcome.yearSports');
 Route::get('/year/scheduleAndMatches/{game}', 'WelcomeController@scheduleAndMatches')->name('welcome.scheduleAndMatches');
 Route::get('/year/scoreboard/{event}', 'WelcomeController@scoreboard')->name('welcome.scoreboard');
+Route::get('/year/result/{game}', 'WelcomeController@overallSportsWinner');
 
 // auth
 Auth::routes();

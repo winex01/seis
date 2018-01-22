@@ -209,7 +209,7 @@
                             <div class="form-group">
                               <label for="gold-medal" class="text-danger">Gold Medal:</label>
                               <select class="form-control" id="gold-medal" name="gold_team_id">
-                                <option value="">Select Team</option>
+                                <option value="">None</option>
                                 @foreach($teams as $team)
                                     <option value="{{ $team->id }}" {{ ($team->id == $game->gold_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
@@ -225,7 +225,7 @@
                             <div class="form-group">
                               <label for="silver-medal" class="text-primary">Silver Medal:</label>
                               <select class="form-control" id="silver-medal" name="silver_team_id">
-                                <option value="">Select Team</option>
+                                <option value="">None</option>
                                 @foreach($teams as $team)
                                     <option value="{{ $team->id }}" {{ ($team->id == $game->silver_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach
@@ -241,7 +241,7 @@
                             <div class="form-group">
                               <label for="bronze-medal" class="text-warning">Bronze Medal:</label>
                               <select class="form-control" id="bronze-medal" name="bronze_team_id">
-                                <option value="">Select Team</option>
+                                <option value="">None</option>
                                 @foreach($teams as $team)
                                     <option value="{{ $team->id }}" {{ ($team->id == $game->bronze_team_id) ? 'selected' : '' }} >{{ $team->description }}</option>
                                 @endforeach

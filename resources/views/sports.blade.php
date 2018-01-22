@@ -123,6 +123,82 @@
     </div>
 </div>
 
+
+
+
+<div class="modal fade" id="modal-overall-winner">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="overall-title">Overall Winner of</h4>
+            </div>
+            <div class="modal-body">
+
+                <form>
+
+
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="gold-medal" class="text-danger">Gold Medal:</label>
+                              <select class="form-control" id="gold-medal" name="gold_team_id">
+                                <option>None</option>
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->id }}">{{ $team->description }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="silver-medal" class="text-primary">Silver Medal:</label>
+                              <select class="form-control" id="silver-medal" name="silver_team_id">
+                                <option>None</option>
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->id }}">{{ $team->description }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="bronze-medal" class="text-warning">Bronze Medal:</label>
+                              <select class="form-control" id="bronze-medal" name="bronze_team_id">
+                                <option>None</option>
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->id }}">{{ $team->description }}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 @endsection
 
 
@@ -202,6 +278,30 @@ $('#btn-score-board').click(function(event) {
     $('#modal-score').modal();
 
 });
+
+
+
+function overallSportsWinner(game){
+
+    $.ajax({
+        url: '{{ url('year/result').'/' }}'+game.id,
+        type: 'GET',
+        success: function (data) {
+            console.log(data);
+
+            $('#gold-medal').val(data.gold.id);
+            $('#silver-medal').val(data.silver.id);
+            $('#bronze-medal').val(data.bronze.id);
+
+            $('#overall-title').text(data.game + ' overall winner');
+        }
+    });
+
+
+
+    $('#modal-overall-winner').modal();
+}
+
 
 </script> 
 
