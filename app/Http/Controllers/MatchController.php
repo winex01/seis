@@ -44,7 +44,10 @@ class MatchController extends Controller
             'schedule' => 'required',
         ]);
 
-
+        if ($request->team1_id == $request->team2_id) {
+            flash('Cannot add schedule with same team!')->error();
+            return back();
+        }
 
         $game_id = $request->game_id;
 
