@@ -144,12 +144,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="gold-medal" class="text-danger">Gold Medal:</label>
-                              <select class="form-control" disabled id="gold-medal" name="gold_team_id">
-                                <option>None</option>
-                                @foreach($teams as $team)
-                                    <option value="{{ $team->id }}">{{ $team->description }}</option>
-                                @endforeach
-                              </select>
+                              <input type="text" class="form-control" id="gold-medal" disabled>
                             </div>
                         </div>
                         <div class="col-sm-3"></div>
@@ -160,12 +155,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="silver-medal" class="text-primary">Silver Medal:</label>
-                              <select class="form-control" disabled id="silver-medal" name="silver_team_id">
-                                <option>None</option>
-                                @foreach($teams as $team)
-                                    <option value="{{ $team->id }}">{{ $team->description }}</option>
-                                @endforeach
-                              </select>
+                              <input type="text" class="form-control" id="silver-medal" disabled>
                             </div>
                         </div>
                         <div class="col-sm-3"></div>
@@ -176,12 +166,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="bronze-medal" class="text-warning">Bronze Medal:</label>
-                              <select class="form-control" disabled id="bronze-medal" name="bronze_team_id">
-                                <option>None</option>
-                                @foreach($teams as $team)
-                                    <option value="{{ $team->id }}">{{ $team->description }}</option>
-                                @endforeach
-                              </select>
+                              <input type="text" class="form-control" id="bronze-medal" disabled>
                             </div>
                         </div>
                         <div class="col-sm-3"></div>
@@ -287,11 +272,11 @@ function overallSportsWinner(game){
         url: '{{ url('year/result').'/' }}'+game.id,
         type: 'GET',
         success: function (data) {
-            console.log(data);
+            // console.log(data);
 
-            $('#gold-medal').val(data.gold.id);
-            $('#silver-medal').val(data.silver.id);
-            $('#bronze-medal').val(data.bronze.id);
+            $('#gold-medal').val(data.gold);
+            $('#silver-medal').val(data.silver);
+            $('#bronze-medal').val(data.bronze);
 
             $('#overall-title').text(data.game + ' overall winner');
         }

@@ -185,13 +185,13 @@ class WelcomeController extends Controller
     public function overallSportsWinner(Game $game)
     {
 
-        $gold = $game->goldWinner;
-        $silver = $game->silverWinner;
-        $bronze = $game->bronzeWinner;
+        $gold = $game->goldWinner()->pluck('description');
+        $silver = $game->silverWinner()->pluck('description');
+        $bronze = $game->bronzeWinner()->pluck('description');
 
 
         return response()->json([
-            'result' => $game->game,
+            'game' => $game->game,
             'gold' => $gold,
             'silver' => $silver,
             'bronze' => $bronze
