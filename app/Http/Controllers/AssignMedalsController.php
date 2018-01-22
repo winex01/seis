@@ -15,15 +15,41 @@ class AssignMedalsController extends Controller
     		'game_id' => 'required|not_in:-1',
     	]);
 
-    	$game = Game::findOrFail($request->game_id);
 
-		$game->gold_team_id = $request->gold_team_id;
-		$game->silver_team_id = $request->silver_team_id;
-		$game->bronze_team_id = $request->bronze_team_id;
+        // gold and silver
+        if ($request->gold_team_id != '' && $request->silver_team_id != '') {
+            if ($request->gold_team_id == $request->silver_team_id) {
+                flash('Duplicate team medals!')->error();
+                return back();
+            }
+        }
 
-		
-		
-		$game->save();
+        // gold and bronze
+        if ($request->gold_team_id != '' && $request->bronze_team_id != '') {
+            if ($request->gold_team_id == $request->bronze_team_id) {
+                flash('Duplicate team medals!')->error();
+                return back();
+            }
+        }
+
+        // silver and bronze
+        if ($request->silver_team_id != '' && $request->bronze_team_id != '') {
+            if ($request->silver_team_id == $request->bronze_team_id) {
+                flash('Duplicate team medals!')->error();
+                return back();
+            }
+        }
+
+
+        $game = Game::findOrFail($request->game_id);
+
+        $game->gold_team_id = $request->gold_team_id;
+        $game->silver_team_id = $request->silver_team_id;
+        $game->bronze_team_id = $request->bronze_team_id;
+
+        
+        
+        $game->save();
 
     	flash('Overall winner assigned successfully!')->success();
 
