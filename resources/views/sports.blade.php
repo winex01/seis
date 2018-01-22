@@ -144,7 +144,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="gold-medal" class="text-danger">Gold Medal:</label>
-                              <select class="form-control" id="gold-medal" name="gold_team_id">
+                              <select class="form-control" disabled id="gold-medal" name="gold_team_id">
                                 <option>None</option>
                                 @foreach($teams as $team)
                                     <option value="{{ $team->id }}">{{ $team->description }}</option>
@@ -160,7 +160,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="silver-medal" class="text-primary">Silver Medal:</label>
-                              <select class="form-control" id="silver-medal" name="silver_team_id">
+                              <select class="form-control" disabled id="silver-medal" name="silver_team_id">
                                 <option>None</option>
                                 @foreach($teams as $team)
                                     <option value="{{ $team->id }}">{{ $team->description }}</option>
@@ -176,7 +176,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                               <label for="bronze-medal" class="text-warning">Bronze Medal:</label>
-                              <select class="form-control" id="bronze-medal" name="bronze_team_id">
+                              <select class="form-control" disabled id="bronze-medal" name="bronze_team_id">
                                 <option>None</option>
                                 @foreach($teams as $team)
                                     <option value="{{ $team->id }}">{{ $team->description }}</option>
