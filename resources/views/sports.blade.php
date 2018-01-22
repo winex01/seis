@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <button id="btn-score-board" class="btn btn-success btn-outline">
                         <span class="glyphicon glyphicon-calendar"></span>
-                    Score Board</button>
+                    Medal Tally Board</button>
                 </div>
 
                 <table id="games-table" class="table table-striped table-condensed">
@@ -94,7 +94,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">{{ $event->year }} Score Board</h4>
+                <h4 class="modal-title">{{ $event->year }} Medal Tally Board</h4>
             </div>
             <div class="modal-body">
                 
