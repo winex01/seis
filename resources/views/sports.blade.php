@@ -197,7 +197,11 @@
                 serverSide: true,
                 ajax: '{{ route('welcome.yearSports', $event->id) }}',
                 columnDefs: [
-                    { "width": "250", "targets": 4 }
+                    // { "width": "250", "targets": 4 },
+                    {
+                        "targets": [ 0 ],
+                        "visible": false
+                    }
                 ],
                 columns: [
                     {data: 'id'},
